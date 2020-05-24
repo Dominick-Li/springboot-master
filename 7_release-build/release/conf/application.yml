@@ -1,0 +1,6 @@
+spring:
+  application:
+    #应用名称,作为logback输出日志的名称
+    name: build-app
+server:
+  port: 8007

@@ -1,0 +1,12 @@
+server:
+  port: 8009
+
+dubbo:
+  application:
+    name: order-service-consumer
+  registry:
+    #注册中心地址
+    address: zookeeper://localhost:2181
+  monitor:
+    protocol: registry
+

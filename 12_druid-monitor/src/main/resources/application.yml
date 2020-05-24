@@ -1,0 +1,74 @@
+server:
+  port: 8012
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/comparison?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=GMT%2b8&characterEncoding=utf8&connectTimeout=1000&socketTimeout=3000&autoReconnect=true
+    username: root
+    password: 123456
+    type: com.alibaba.druid.pool.DruidDataSource
+    filters: stat,wall,log4j
+    # 数据连接池配置
+    druid:
+      #连接池最大连接数
+      max-active: 10
+      max-wait: 6000
+      #连接池最小连接数
+      min-idle: 5
+      #连接池初始化大小
+      initial-size: 5
+      connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      max-pool-prepared-statement-per-connection-size: 20
+      pool-prepared-statements: true
+      test-on-borrow: false
+      test-on-return: false
+      test-while-idle: true
+      validation-query:  SELECT 1
+      min-evictable-idle-time-millis: 300000
+      time-between-eviction-runs-millis: 60000
+      #监控信息   localhost:${server.port}/druid/login.html
+      stat-view-servlet:
+        login-username: admin
+        login-password: admin
+        #允许哪个机器登录
+        allow: 127.0.0.1
+        #sql监控开关
+        enabled: true
+      web-stat-filter:
+        #web url监控
+        enabled: true
+        #session监控
+        session-stat-enable: true
+      filter:
+        stat:
+          log-slow-sql: true
+          slow-sql-millis: 1
+
+  jpa:
+    database: mysql
+    show-sql: true
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      ddl-auto: update
+    properties:
+      hibernate:
+        jdbc:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+        enable_lazy_load_no_trans: true
+
+  jackson:
+    serialization:
+      FAIL_ON_EMPTY_BEANS: false
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm
+    deserialization:
+      accept_empty_string_as_null_object: true
+  application:
+    name: platform
+
+
+
+
+

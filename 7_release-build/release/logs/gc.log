@@ -1,0 +1,5 @@
+Java HotSpot(TM) 64-Bit Server VM (25.241-b07) for windows-amd64 JRE (1.8.0_241-b07), built on Dec 11 2019 10:21:40 by "rejava" with MS VC++ 10.0 (VS2010)
+Memory: 4k page, physical 16651340k(1106400k free), swap 29234252k(5122116k free)
+CommandLine flags: -XX:CompressedClassSpaceSize=327155712 -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=logs/heapdump.hprof -XX:InitialHeapSize=536870912 -XX:MaxHeapSize=536870912 -XX:MaxMetaspaceSize=335544320 -XX:MaxNewSize=268435456 -XX:MetaspaceSize=134217728 -XX:NewSize=268435456 -XX:-OmitStackTraceInFastThrow -XX:+PrintGC -XX:+PrintGCDateStamps -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+UseCompressedClassPointers -XX:+UseCompressedOops -XX:-UseLargePagesIndividualAllocation -XX:+UseParallelGC 
+2020-05-19T13:02:11.519+0800: 1.310: [GC (Allocation Failure) [PSYoungGen: 196608K->11792K(229376K)] 196608K->11880K(491520K), 0.0163935 secs] [Times: user=0.02 sys=0.02, real=0.02 secs] 
+2020-05-19T13:02:12.002+0800: 1.793: [GC (Allocation Failure) [PSYoungGen: 208400K->8834K(229376K)] 208488K->8938K(491520K), 0.0078999 secs] [Times: user=0.00 sys=0.00, real=0.01 secs] 

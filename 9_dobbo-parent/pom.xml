@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <packaging>pom</packaging>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.3.0.RELEASE</version>
+        <relativePath/>
+    </parent>
+    <groupId>com.ljm.dobbo</groupId>
+    <artifactId>parent</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>parent</name>
+    <modules>
+        <module>provider</module>
+        <module>consumer</module>
+        <module>common-api</module>
+        <module>dubbo-admin-master</module>
+    </modules>
+    <properties>
+        <java.version>1.8</java.version>
+        <springboot-dobbo.version>0.2.0</springboot-dobbo.version><!--springboot dubbo 版本号-->
+        <common-api.version>1.0-SNAPSHOT</common-api.version>
+    </properties>
+    <!--统一管理版本号-->
+    <dependencyManagement>
+    <dependencies>
+        <!-- 引入spring-boot-starter以及dubbo和curator的依赖 -->
+        <dependency>
+            <groupId>com.alibaba.boot</groupId>
+            <artifactId>dubbo-spring-boot-starter</artifactId>
+            <version>${springboot-dobbo.version}</version>
+        </dependency>
+        <!--接口统一api-->
+        <dependency>
+            <groupId>com.ljm.boot.dobbo</groupId>
+            <artifactId>common-api</artifactId>
+            <version>${common-api.version}</version>
+        </dependency>
+    </dependencies>
+    </dependencyManagement>
+</project>

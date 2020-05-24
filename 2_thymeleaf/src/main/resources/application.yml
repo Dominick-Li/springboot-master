@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: thymeleaf
+  thymeleaf:
+    #关闭模板缓存
+    cache: false
+
+server:
+  servlet:
+    #配置应用的根路径
+    context-path: /thymeleaf
+  port: 8002

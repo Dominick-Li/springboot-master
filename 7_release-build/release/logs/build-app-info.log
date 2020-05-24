@@ -1,0 +1,78 @@
+2020-05-19 12:40:24 [main] - Starting ReleaseBuildApplication v0.0.1-SNAPSHOT on LAPTOP-8IB3RVD9 with PID 20904 (D:\163@github\springboot-master\7_release-build\release\lib\build-app.jar started by Dominick Li in D:\163@github\springboot-master\7_release-build\release)
+2020-05-19 12:40:24 [main] - No active profile set, falling back to default profiles: default
+2020-05-19 12:40:26 [main] - Tomcat initialized with port(s): 8888 (http)
+2020-05-19 12:40:26 [main] - Initializing ProtocolHandler ["http-nio-8888"]
+2020-05-19 12:40:26 [main] - Starting service [Tomcat]
+2020-05-19 12:40:26 [main] - Starting Servlet engine: [Apache Tomcat/9.0.34]
+2020-05-19 12:40:26 [main] - Initializing Spring embedded WebApplicationContext
+2020-05-19 12:40:26 [main] - Root WebApplicationContext: initialization completed in 2227 ms
+2020-05-19 12:40:26 [main] - Initializing ExecutorService 'applicationTaskExecutor'
+2020-05-19 12:40:26 [main] - Starting ProtocolHandler ["http-nio-8888"]
+2020-05-19 12:40:26 [main] - Tomcat started on port(s): 8888 (http) with context path ''
+2020-05-19 12:40:26 [main] - Started ReleaseBuildApplication in 3.47 seconds (JVM running for 4.024)
+2020-05-19 12:40:26 [main] - test info level
+2020-05-19 12:44:41 [main] - Starting ReleaseBuildApplication v0.0.1-SNAPSHOT on LAPTOP-8IB3RVD9 with PID 12816 (D:\163@github\springboot-master\7_release-build\release\lib\build-app.jar started by Dominick Li in D:\163@github\springboot-master\7_release-build\release)
+2020-05-19 12:44:41 [main] - No active profile set, falling back to default profiles: default
+2020-05-19 12:44:43 [main] - Tomcat initialized with port(s): 8888 (http)
+2020-05-19 12:44:43 [main] - Initializing ProtocolHandler ["http-nio-8888"]
+2020-05-19 12:44:43 [main] - Starting service [Tomcat]
+2020-05-19 12:44:43 [main] - Starting Servlet engine: [Apache Tomcat/9.0.34]
+2020-05-19 12:44:43 [main] - Initializing Spring embedded WebApplicationContext
+2020-05-19 12:44:43 [main] - Root WebApplicationContext: initialization completed in 2025 ms
+2020-05-19 12:44:43 [main] - Initializing ExecutorService 'applicationTaskExecutor'
+2020-05-19 12:44:43 [main] - Starting ProtocolHandler ["http-nio-8888"]
+2020-05-19 12:44:43 [main] - Tomcat started on port(s): 8888 (http) with context path ''
+2020-05-19 12:44:43 [main] - Started ReleaseBuildApplication in 3.119 seconds (JVM running for 3.537)
+2020-05-19 12:44:43 [main] - test info level
+2020-05-19 12:45:18 [main] - Starting ReleaseBuildApplication v0.0.1-SNAPSHOT on LAPTOP-8IB3RVD9 with PID 6904 (D:\163@github\springboot-master\7_release-build\release\lib\build-app.jar started by Dominick Li in D:\163@github\springboot-master\7_release-build\release)
+2020-05-19 12:45:18 [main] - No active profile set, falling back to default profiles: default
+2020-05-19 12:45:20 [main] - Tomcat initialized with port(s): 8888 (http)
+2020-05-19 12:45:20 [main] - Initializing ProtocolHandler ["http-nio-8888"]
+2020-05-19 12:45:20 [main] - Starting service [Tomcat]
+2020-05-19 12:45:20 [main] - Starting Servlet engine: [Apache Tomcat/9.0.34]
+2020-05-19 12:45:20 [main] - Initializing Spring embedded WebApplicationContext
+2020-05-19 12:45:20 [main] - Root WebApplicationContext: initialization completed in 1930 ms
+2020-05-19 12:45:20 [main] - Initializing ExecutorService 'applicationTaskExecutor'
+2020-05-19 12:45:21 [main] - Starting ProtocolHandler ["http-nio-8888"]
+2020-05-19 12:45:21 [main] - Tomcat started on port(s): 8888 (http) with context path ''
+2020-05-19 12:45:21 [main] - Started ReleaseBuildApplication in 3.021 seconds (JVM running for 3.432)
+2020-05-19 12:45:21 [main] - test info level
+2020-05-19 12:45:55 [main] - Starting ReleaseBuildApplication v0.0.1-SNAPSHOT on LAPTOP-8IB3RVD9 with PID 9564 (D:\163@github\springboot-master\7_release-build\release\lib\build-app.jar started by Dominick Li in D:\163@github\springboot-master\7_release-build\release)
+2020-05-19 12:45:55 [main] - No active profile set, falling back to default profiles: default
+2020-05-19 12:45:57 [main] - Tomcat initialized with port(s): 8888 (http)
+2020-05-19 12:45:57 [main] - Initializing ProtocolHandler ["http-nio-8888"]
+2020-05-19 12:45:57 [main] - Starting service [Tomcat]
+2020-05-19 12:45:57 [main] - Starting Servlet engine: [Apache Tomcat/9.0.34]
+2020-05-19 12:45:57 [main] - Initializing Spring embedded WebApplicationContext
+2020-05-19 12:45:57 [main] - Root WebApplicationContext: initialization completed in 1948 ms
+2020-05-19 12:45:57 [main] - Initializing ExecutorService 'applicationTaskExecutor'
+2020-05-19 12:45:57 [main] - Starting ProtocolHandler ["http-nio-8888"]
+2020-05-19 12:45:57 [main] - Tomcat started on port(s): 8888 (http) with context path ''
+2020-05-19 12:45:57 [main] - Started ReleaseBuildApplication in 3.047 seconds (JVM running for 3.455)
+2020-05-19 12:45:57 [main] - test info level
+2020-05-19 13:00:57 [main] - Starting ReleaseBuildApplication v0.0.1-SNAPSHOT on LAPTOP-8IB3RVD9 with PID 5752 (D:\163@github\springboot-master\7_release-build\release\lib\build-app.jar started by Dominick Li in D:\163@github\springboot-master\7_release-build\release)
+2020-05-19 13:00:57 [main] - No active profile set, falling back to default profiles: default
+2020-05-19 13:00:58 [main] - Tomcat initialized with port(s): 8888 (http)
+2020-05-19 13:00:58 [main] - Initializing ProtocolHandler ["http-nio-8888"]
+2020-05-19 13:00:58 [main] - Starting service [Tomcat]
+2020-05-19 13:00:58 [main] - Starting Servlet engine: [Apache Tomcat/9.0.35]
+2020-05-19 13:00:59 [main] - Initializing Spring embedded WebApplicationContext
+2020-05-19 13:00:59 [main] - Root WebApplicationContext: initialization completed in 1958 ms
+2020-05-19 13:00:59 [main] - Initializing ExecutorService 'applicationTaskExecutor'
+2020-05-19 13:00:59 [main] - Starting ProtocolHandler ["http-nio-8888"]
+2020-05-19 13:00:59 [main] - Tomcat started on port(s): 8888 (http) with context path ''
+2020-05-19 13:00:59 [main] - Started ReleaseBuildApplication in 3.044 seconds (JVM running for 3.465)
+2020-05-19 13:00:59 [main] - test info level
+2020-05-19 13:02:11 [main] - Starting ReleaseBuildApplication v0.0.1-SNAPSHOT on LAPTOP-8IB3RVD9 with PID 6844 (D:\163@github\springboot-master\7_release-build\release\lib\build-app.jar started by Dominick Li in D:\163@github\springboot-master\7_release-build\release)
+2020-05-19 13:02:11 [main] - No active profile set, falling back to default profiles: default
+2020-05-19 13:02:13 [main] - Tomcat initialized with port(s): 8007 (http)
+2020-05-19 13:02:13 [main] - Initializing ProtocolHandler ["http-nio-8007"]
+2020-05-19 13:02:13 [main] - Starting service [Tomcat]
+2020-05-19 13:02:13 [main] - Starting Servlet engine: [Apache Tomcat/9.0.35]
+2020-05-19 13:02:13 [main] - Initializing Spring embedded WebApplicationContext
+2020-05-19 13:02:13 [main] - Root WebApplicationContext: initialization completed in 1946 ms
+2020-05-19 13:02:13 [main] - Initializing ExecutorService 'applicationTaskExecutor'
+2020-05-19 13:02:13 [main] - Starting ProtocolHandler ["http-nio-8007"]
+2020-05-19 13:02:13 [main] - Tomcat started on port(s): 8007 (http) with context path ''
+2020-05-19 13:02:13 [main] - Started ReleaseBuildApplication in 2.99 seconds (JVM running for 3.4)
+2020-05-19 13:02:13 [main] - test info level

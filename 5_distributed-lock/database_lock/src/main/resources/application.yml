@@ -1,0 +1,30 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/databaselook?useSSL=false&serverTimezone=GMT%2b8&characterEncoding=utf8&connectTimeout=1000&socketTimeout=3000&autoReconnect=true
+    username: root
+    password: 123456
+    type: com.zaxxer.hikari.HikariDataSource
+    #initialization-mode: always
+    #data: classpath:data.sql
+    hikari:
+      pool-name: MyHikariCP
+      minimum-idle: 10
+      maximum-pool-size: 300
+      idle-timeout: 180000
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1
+  jpa:
+    database: mysql
+    show-sql: false
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+        enable_lazy_load_no_trans: true

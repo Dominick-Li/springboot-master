@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--加载通用模板 (默认拼接前缀路径,开头请勿再添加斜杠,防止部署运行报错)-->
+    <script th:replace="common/resources::static"></script>
+</head>
+<body>
+
+<!--导入网站通用的头部标签模板-->
+<header th:include="common/header :: header">
+
+
+</header>
+<div class="flexBox">
+    <input type="hidden" th:value="${id>=0?id:'id小于0'}">
+    <!--th:if 条件true渲染,false隐藏           ${session.user}获取session中的用户-->
+    <div style="text-align: right;" th:if="${session.user}" th:text="'当前登录的用户:'+${session.user.name}"></div>
+    <p th:utext="'<button>我是按钮</button>当前登录的用户:'+${session.user.name}"></p>
+</div>
+<div class="flexBox">
+    <div>
+        <table border="1">
+            <thead>
+            <tr>
+                <th>下标</th>
+                <th>用户姓名</th>
+                <th>用户性别</th>
+                <th>创建时间</th>
+            </tr>
+            </thead>
+            <!--iterObj表示当前迭代的对象, index表示数组小标,count表示迭代的次数,重1开始 -->
+            <!-- th:utext可以渲染html元素,类似jquery的 html()方法, text等于jquery的text()方法 -->
+            <tbody>
+            <tr th:each="user,iterObj : ${userList}">
+                <td th:text="${'数组下标:'+iterObj.index+',迭代的次数:'+iterObj.count}"></td>
+                <td th:text="${user.name}"></td>
+                <td th:text="${user.getGendenName()}"></td>
+                <td th:text="${#dates.format(user.createTime,'yyyy-MM-dd HH:mm:ss')}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div th:if="${userList}">
+        变量存在,则渲染
+    </div>
+
+    <div th:unless="false">
+        变量不存在,则渲染
+    </div>
+
+    <div>
+        <ul>
+            <li th:each="entry : ${page}" th:text="${entry.key+':'+entry.value}" ></li>
+        </ul>
+    </div>
+
+    <div>
+        <form style="border: solid 1px red">
+            <h3>我是form表单</h3>
+            <div>
+                id: <input type="text" th:value="${session.user.userId}">(正常情况type="hidden" )
+            </div>
+            <div>
+                用户名: <input th:value="${session.user.name}">
+            </div>
+
+            <!-- session.user.gender==0 如果用户是男的,则勾选男的单选框 -->
+            <div>
+                性别: <input type="radio" value="0" th:checked="${session.user.gender==0}"> 男 <input type="radio"
+                                                                                                   th:checked="${session.user.gender==1}"
+                                                                                                   value="1"> 女
+            </div>
+            <div>
+                在js中选中当前登录的用户 <select id="select">
+                <option value="test1">test1</option>
+                <option value="test2">test2</option>
+                <option value="admin">admin</option>
+                <option value="test3">test3</option>
+            </select>
+            </div>
+        </form>
+    </div>
+</div>
+<!--导入网站通用的尾部模板-->
+<footer th:include="common/footer :: footer">
+
+</footer>
+</body>
+<!--在js脚本中获取作用域的值-->
+<script th:inline="javascript">
+    //获取session中的user
+    var user = [[${session.user}]];
+    console.log(user.name)
+    //获取下拉框的dom元素
+    var mySelect = document.getElementById("select");
+    //选中值为 admin的 option标签
+    mySelect.value = user.name;
+
+</script>
+<!--通过链接表达式@{}直接拿到应用路径，然后拼接静态资源路径-->
+<script th:src="@{/js/test.js}"></script>
+<script>
+    pingHelloThymeleaf();
+</script>
+
+<script>
+    $(function () {
+        console.log("jquery 静态资源加载成功")
+    })
+</script>
+<!--因为应用有根路径,所以helloword不会输出-->
+<script src="/js/test2.js"></script>
+<script>
+    pingHelloWorld();
+</script>
+
+</html>

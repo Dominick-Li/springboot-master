@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <packaging>pom</packaging>
+
+    <groupId>com.ljm.boot</groupId>
+    <artifactId>master</artifactId>
+    <version>v1.0</version>
+    <name>master</name>
+    <description>基于springboot 2.3.0版本集成各种常用中间件的</description>
+
+    <modules>
+        <module>1_helloword</module>
+        <module>2_thymeleaf</module>
+        <module>3_simplifycode</module>
+        <module>4_jta-atomikos</module>
+        <module>5_distributed-lock</module>
+        <module>6_docker-build</module>
+        <module>7_release-build</module>
+        <module>8_my-spring-boot-starter-parent</module>
+        <module>9_dobbo-parent</module>
+        <module>10_api-limit</module>
+        <module>11_spring-data-jpa</module>
+        <module>12_druid-monitor</module>
+    </modules>
+
+</project>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>引入网站的头尾片段</title>
+</head>
+<body>
+<!--导入网站通用的头部标签模板-->
+<header th:include="common/header :: header"></header>
+<div id="body">
+   网站的主体内容
+</div>
+<!--导入网站通用的尾部模板-->
+<footer th:include="common/footer :: footer" ></footer>
+</body>
+</html>

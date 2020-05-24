@@ -1,0 +1,4 @@
+server:
+  port: 8006
+username: devUser
+password: 123456

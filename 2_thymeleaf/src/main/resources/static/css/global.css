@@ -1,0 +1,35 @@
+
+.flexBox {
+    /*弹性盒子布局*/
+    display: flex;
+    width: 100%;
+}
+
+.flexBox div {
+    width: 50%;
+    background-color: pink;
+
+}
+
+header,footer{
+    width: 100%;
+    background-color: slategrey;
+    height: 100px;
+}
+
+header div,footer div{
+    display: flex;
+    /*主轴居中*/
+    justify-content: center;
+    /*垂直居中*/
+    align-items: center;
+}
+
+#body{
+    width: 100%;
+    height: 200px;
+    background-color: aquamarine;
+    text-align: center;
+    font-weight: bold;
+    font-size: 22px;
+}
