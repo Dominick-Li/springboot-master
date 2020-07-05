@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: service
+  boot:
+    admin:
+      client:
+        # spring boot admin server的注册地址,多个以逗号隔开,并把localhost换成ip
+        url: http://localhost:8013
+        instance:
+          prefer-ip: true
+        register-once: false
+
+#需要暴露监控端口给spring boot admin server访问
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: ALWAYS

@@ -1,0 +1,22 @@
+@charset "utf-8";
+/* 你自己的样式 */
+.trHover{
+    background-color: #f5f5f5;
+}
+
+/*index页面样式*/
+.Hui-aside .menu_dropdown dt {
+    color: white;
+    font-family: "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 13px;
+}
+.Hui-aside .menu_dropdown li a {
+    color: white;
+    font-family: "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 13px;
+}
+.userName{
+    color: white;
+    font-family: "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    margin-left: 5%;
+}

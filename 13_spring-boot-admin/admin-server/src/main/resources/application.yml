@@ -1,0 +1,32 @@
+server:
+  port: 8013
+
+spring:
+  application:
+    name: monitor
+  boot:
+    admin:
+      ui:
+        # ui页面的自定义内容信息
+        title: 我的服务监控中心
+        brand: <span>Service Monitoring Center</span>
+  #配置发送邮件需要的参数
+  mail:
+    #邮件服务器
+    host: smtp.qq.com
+    #发送邮件的帐号
+    username: 你的邮箱帐号
+    #邮箱帐号的授权码
+    password: 你的邮件授权码
+    properties:
+      mail:
+        smtp:
+          auth: true
+
+client:
+  notify:
+    mail:
+      #邮件内容的标题
+      subject: test service notification
+      #收邮件的帐号,多个用 , 隔开
+      to: 你收邮件的帐号

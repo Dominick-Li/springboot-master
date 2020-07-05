@@ -1,0 +1,58 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/boot_master?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=GMT%2b8&characterEncoding=utf8&connectTimeout=10000&socketTimeout=3000&autoReconnect=true
+    username: root
+    password: 123456
+    type: com.alibaba.druid.pool.DruidDataSource
+    #项目启动执行sql脚本
+    schema: classpath:sql/user.sql
+    sql-script-encoding: utf-8
+    platform: mysql
+    initialization-mode: always
+    # 数据连接池配置
+    druid:
+      max-active: 10
+      max-wait: 6000
+      min-idle: 5
+      initial-size: 5
+      connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      max-pool-prepared-statement-per-connection-size: 20
+      pool-prepared-statements: true
+      test-on-borrow: false
+      test-on-return: false
+      test-while-idle: true
+      validation-query:  SELECT 1
+      min-evictable-idle-time-millis: 300000
+      time-between-eviction-runs-millis: 60000
+  freemarker:
+    #关闭模板缓存，方便测试
+    cache: false
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm
+
+# mybatis-plus相关配置
+mybatis-plus:
+  # xml扫描，多个目录用逗号或者分号分隔（告诉 Mapper 所对应的 XML 文件位置）
+  mapper-locations: classpath:com.ljm.boot.mybatisplus.mapper.xml/*.xml
+  type-aliases-package: com.ljm.boot.mybatisplus.model
+  # 以下配置均有默认值,可以不设置
+  global-config:
+    db-config:
+      #主键类型  auto:"数据库ID自增" 1:"用户输入ID",2:"全局唯一ID (数字类型唯一ID)", 3:"全局唯一ID UUID";
+      id-type: auto
+      #字段策略 IGNORED:"忽略判断"  NOT_NULL:"非 NULL 判断")  NOT_EMPTY:"非空判断"
+      field-strategy: NOT_EMPTY
+      #数据库类型
+      db-type: MYSQL
+  configuration:
+    # 是否开启自动驼峰命名规则映射:从数据库列名到Java属性驼峰命名的类似映射
+    map-underscore-to-camel-case: true
+    # 如果查询结果中包含空值的列，则 MyBatis 在映射的时候，不会映射这个字段
+    call-setters-on-nulls: true
+    # 这个配置会将执行的sql打印出来，在开发或测试的时候可以用
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+server:
+  port: 8014

@@ -23,6 +23,9 @@
         <module>10_api-limit</module>
         <module>11_spring-data-jpa</module>
         <module>12_druid-monitor</module>
+        <module>13_spring-boot-admin</module>
+        <module>14_mybatis-plus</module>
+        <module>15_shiro</module>
     </modules>
 
 </project>
