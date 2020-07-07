@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="/jquery-1.12.4.min.js"></script>
+<body>
+ <form id="loginForm" method="post" >
+     用户名:<input type="text" name="username" />
+     密码:<input type="password" name="password" />
+     <input type="submit" value="登录">
+ </form>
+</body>
+<script>
+    var form= document.getElementById("loginForm");
+    form.onsubmit=function () {
+        $.ajax({
+            type: 'post',
+            url: "/login.do",
+            data: $("#loginForm").serialize(),
+            success: function (result) {
+                if (result.success) {
+                    alert("登录成功")
+                    window.location="/user/index";
+                } else {
+                    alert(result.message)
+                }
+            },error:function () {
+                alert('网络异常!')
+            }
+        })
+        return false;
+    }
+</script>
+</html>

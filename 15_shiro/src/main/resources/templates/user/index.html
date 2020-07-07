@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+ 用户列表页面
+<a href="/admin/index">跳转到管理员页面</a>
+
+<table border="1">
+   <thead>
+     <th>用户名</th>
+     <th>密码</th>
+     <th>salt</th>
+     <th>操作</th>
+   </thead>
+    <tbody>
+    <tr th:each="user : ${userList}">
+        <td th:text="${user.username}"></td>
+        <td th:text="${user.password}"></td>
+        <td th:text="${user.salt}"></td>
+        <td><a href="/user/save">修改</a><a th:href="'/user/delete/'+${user.username}">删除</a></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

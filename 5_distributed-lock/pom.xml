@@ -16,9 +16,9 @@
     <description>Demo project for distributed lock</description>
 
     <modules>
-        <module>database</module>
-        <module>redis</module>
-        <module>zookeeper</module>
+        <module>database_lock</module>
+        <module>redis_lock</module>
+        <module>zookeeper_lock</module>
     </modules>
 
 </project>
