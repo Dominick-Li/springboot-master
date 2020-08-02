@@ -1,6 +1,8 @@
 [toc]
 # 简介
-基于springboot 版本2.3.0版本实现一些常用的功能
+基于springboot框架实现一些常用的功能
+![Java](https://img.shields.io/badge/JDK-1.8-green.svg)
+[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-2.3.0.RELEASE-brightgreen.svg)](https://spring.io/projects/spring-boot)
 
 #环境
 基于JDK1.8
@@ -21,4 +23,8 @@
 10_api-limit | 对API接口限流 |[点我跳转](https://blog.csdn.net/ming19951224/article/details/106227451)
 11_spring-data-jpa | 实现了常用的数据库CRUD操作 | [点我跳转](https://blog.csdn.net/ming19951224/article/details/106308544)
 12_druid-monitor | Druid Monitor不仅可以监控数据源和慢查询，还可以监控Web应用、URI监控、Session监控、Spring监控 | [点我跳转](https://blog.csdn.net/ming19951224/article/details/106317893)
-
+13_spring-boot-admin | 使用springboot admin对springboot应用进行监控| [点我跳转](https://blog.csdn.net/ming19951224/article/details/107138845)
+14_mybatis-plus | mybatis-plus实战 | [点我跳转](https://blog.csdn.net/ming19951224/article/details/107145780)
+15_shiro | 使用shiro对web应用进行权限认证 | [点我跳转](https://blog.csdn.net/ming19951224/article/details/107192585)
+16_security-jwt | security整合jwt实现对前后端分离的项目进行权限认证 | [点我跳转](https://blog.csdn.net/ming19951224/article/details/107733689)
+17_swagger | 使用swagger2生成RESTful风格的接口文档 | [点我跳转](https://blog.csdn.net/ming19951224/article/details/107741541)

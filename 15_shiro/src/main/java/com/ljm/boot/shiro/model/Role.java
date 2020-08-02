@@ -6,8 +6,8 @@ import java.util.Set;
 public class Role {
 
     public Role(String roleName, Set<Permission> permissions) {
-        this.roleName=roleName;
-        this.permissions=permissions;
+        this.roleName = roleName;
+        this.permissions = permissions;
     }
 
     private Integer id;

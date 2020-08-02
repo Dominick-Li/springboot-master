@@ -2,12 +2,12 @@ package com.ljm.boot.shiro.model;
 
 public class Permission {
 
-    private Integer  id;
+    private Integer id;
 
-    private String  permissionName;
+    private String permissionName;
 
-    public Permission(String permissionName){
-        this.permissionName=permissionName;
+    public Permission(String permissionName) {
+        this.permissionName = permissionName;
     }
 
     public Integer getId() {

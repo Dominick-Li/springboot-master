@@ -15,7 +15,7 @@ public class ResponseResult extends HashMap<String, Serializable> implements Ser
     private static final String RES_DATA = "data";
     private static final String RES_TOTAL_PAGE = "totalPage";
     private static final String RES_LIST = "result";
-    private static final String RES_TOTAL_RECORD="totalRecord";
+    private static final String RES_TOTAL_RECORD = "totalRecord";
     private static final long serialVersionUID = 1L;
 
     public ResponseResult(boolean success) {
@@ -27,7 +27,7 @@ public class ResponseResult extends HashMap<String, Serializable> implements Ser
         this.setMessage(message);
     }
 
-    public ResponseResult(boolean success, String message,Serializable data) {
+    public ResponseResult(boolean success, String message, Serializable data) {
         this.setSuccess(success);
         this.setMessage(message);
         this.setData(data);
@@ -59,16 +59,16 @@ public class ResponseResult extends HashMap<String, Serializable> implements Ser
     }
 
     public void setMessage(String message) {
-        this.put(RES_MESSAGE,message);
+        this.put(RES_MESSAGE, message);
     }
 
 
-
-    public void setTotalRecord(long totalRecord){
+    public void setTotalRecord(long totalRecord) {
         this.put(RES_TOTAL_RECORD, totalRecord);
     }
-    public long getTotalRecord(){
-        return  (long) (Integer) ((Serializable)this.get(RES_TOTAL_RECORD));
+
+    public long getTotalRecord() {
+        return (long) (Integer) ((Serializable) this.get(RES_TOTAL_RECORD));
     }
 
     public Serializable getData() {

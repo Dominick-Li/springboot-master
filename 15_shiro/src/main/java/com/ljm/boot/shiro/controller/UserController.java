@@ -21,7 +21,7 @@ import java.util.List;
 /**
  * @author Dominick Li
  * @CreateTime 2020/5/15 11:39
- * @description  release
+ * @description release
  **/
 @Controller
 public class UserController {
@@ -30,7 +30,7 @@ public class UserController {
     UserRepository userRepository;
 
     @GetMapping("/login")
-    public String login(){
+    public String login() {
         return "login";
     }
 
@@ -49,31 +49,31 @@ public class UserController {
             e.printStackTrace();
             return new ResponseResult(false, "没有权限!");
         }
-        return new ResponseResult(true,"登录成功!");
+        return new ResponseResult(true, "登录成功!");
     }
 
     //必须拥有admin角色
-   // @RequiresRoles( value = "admin")
+    // @RequiresRoles( value = "admin")
+
     /**
      * value可以是多个,多个写在{}里
      * Logical.OR admin或user角色都能访问
      * logical默认是 AND ,如果多项的话,必须都满足所有条件才能访问
      */
-    @RequiresRoles( value = {"admin", "user"}, logical = Logical.OR)
+    @RequiresRoles(value = {"admin", "user"}, logical = Logical.OR)
     @GetMapping("/user/index")
-    public String user(Model model)
-    {
-        List<User> users=userRepository.findAll();
-        model.addAttribute("userList",users);
+    public String user(Model model) {
+        List<User> users = userRepository.findAll();
+        model.addAttribute("userList", users);
         return "user/index";
     }
 
     /**
      * 需要管理员角色
      */
-    @RequiresRoles( value = "admin")
+    @RequiresRoles(value = "admin")
     @GetMapping("/admin/index")
-    public String adminList(){
+    public String adminList() {
         return "admin/index";
     }
 
@@ -82,13 +82,13 @@ public class UserController {
      */
     @RequiresPermissions(value = "save")
     @GetMapping("/user/save")
-    public String save(){
+    public String save() {
         return "user/save";
     }
 
-    @RequiresPermissions(value = {"delete","*"},logical = Logical.OR)
+    @RequiresPermissions(value = {"delete", "*"}, logical = Logical.OR)
     @GetMapping("/user/delete/{username}")
-    public String delete(@PathVariable String username){
+    public String delete(@PathVariable String username) {
         userRepository.deleteByUserName(username);
         return "forward:/user/index";
     }

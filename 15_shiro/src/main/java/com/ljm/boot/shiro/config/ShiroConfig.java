@@ -80,7 +80,6 @@ public class ShiroConfig {
     }
 
 
-
     @Bean
     public static LifecycleBeanPostProcessor getLifecycleBeanPostProcessor() {
         return new LifecycleBeanPostProcessor();
@@ -88,8 +87,8 @@ public class ShiroConfig {
 
     @Bean
     @ConditionalOnMissingBean
-    public DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator(){
-        DefaultAdvisorAutoProxyCreator app=new DefaultAdvisorAutoProxyCreator();
+    public DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator() {
+        DefaultAdvisorAutoProxyCreator app = new DefaultAdvisorAutoProxyCreator();
         app.setProxyTargetClass(true);
         return app;
     }

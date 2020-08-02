@@ -1,0 +1,7 @@
+server:
+  port: 8017
+
+swagger:
+  enable: true
+
+

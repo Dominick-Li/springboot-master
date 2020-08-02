@@ -5,16 +5,16 @@
     <title>Title</title>
 </head>
 <body>
- 用户列表页面
+用户列表页面
 <a href="/admin/index">跳转到管理员页面</a>
 
 <table border="1">
-   <thead>
-     <th>用户名</th>
-     <th>密码</th>
-     <th>salt</th>
-     <th>操作</th>
-   </thead>
+    <thead>
+    <th>用户名</th>
+    <th>密码</th>
+    <th>salt</th>
+    <th>操作</th>
+    </thead>
     <tbody>
     <tr th:each="user : ${userList}">
         <td th:text="${user.username}"></td>

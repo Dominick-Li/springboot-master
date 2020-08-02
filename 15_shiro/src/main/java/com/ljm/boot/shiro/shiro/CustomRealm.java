@@ -20,7 +20,7 @@ import java.util.Set;
 
 public class CustomRealm extends AuthorizingRealm {
 
-   private final Logger logger= LoggerFactory.getLogger(this.getClass());
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     private UserRepository userRepository;
@@ -31,8 +31,8 @@ public class CustomRealm extends AuthorizingRealm {
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
         Set<String> permissionList = new HashSet<>();
         Set<String> roleNameList = new HashSet<>();
-        for(Role role: user.getRoles()){
-            for(Permission permission : role.getPermissions()){
+        for (Role role : user.getRoles()) {
+            for (Permission permission : role.getPermissions()) {
                 //添加权限
                 permissionList.add(permission.getPermissionName());
             }
@@ -47,15 +47,15 @@ public class CustomRealm extends AuthorizingRealm {
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
         UsernamePasswordToken upt = (UsernamePasswordToken) authenticationToken;
-        User user=userRepository.findByUserName(upt.getUsername());
-        if(user==null){
+        User user = userRepository.findByUserName(upt.getUsername());
+        if (user == null) {
             //帐号不存在
             logger.info("account does not exist!");
-            throw  new UnknownAccountException();
+            throw new UnknownAccountException();
         }
         logger.info("account exist ,Certification...!");
         //把数据库的密码和(当前登录输入的密码+盐 后加密的密码比对)
-        SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(user,user.getPassword(), ByteSource.Util.bytes(user.getSalt()),getName());
+        SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(user, user.getPassword(), ByteSource.Util.bytes(user.getSalt()), getName());
         return authenticationInfo;
     }
 
