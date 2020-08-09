@@ -11,7 +11,6 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 @Api(tags = "用户管理相关接口")
@@ -20,15 +19,15 @@ public class UserController {
 
     @GetMapping("/")
     @ApiOperation("分页查询所有用户")
-    public List<User> getUserById(@RequestBody PageParam pageParam) {
-        return new ArrayList<User>();
+    public HttpResult<ArrayList<User>> getUserById(@RequestBody PageParam pageParam) {
+        return HttpResult.successResult(new ArrayList<User>());
     }
 
     @GetMapping("/{id}")
     @ApiOperation("根据id查询用户的接口")
     @ApiImplicitParam(name = "id", value = "用户id", required = true)
-    public User getUserById(@PathVariable Integer id) {
-       return new User();
+    public HttpResult<User> getUserById(@PathVariable Integer id) {
+       return HttpResult.successResult(new User());
     }
 
 

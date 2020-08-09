@@ -10,7 +10,7 @@ import org.springframework.util.StringUtils;
 import java.io.Serializable;
 
 @ApiModel("Http结果响应")
-public class HttpResult  implements Serializable {
+public class HttpResult<T> implements Serializable {
 
     private static String successMessage = "操作成功";
 
@@ -20,7 +20,7 @@ public class HttpResult  implements Serializable {
     private int code;
 
     @ApiModelProperty("响应数据")
-    private Object data;
+    private T data;
 
     @ApiModelProperty("响应消息")
     private String msg;
@@ -32,7 +32,7 @@ public class HttpResult  implements Serializable {
         this.msg=msg;
     }
 
-    public HttpResult(int code, String msg, Object data) {
+    public HttpResult(int code, String msg, T data) {
         this.code=code;
         this.msg=msg;
         this.data=data;
@@ -46,11 +46,11 @@ public class HttpResult  implements Serializable {
         this.code = code;
     }
 
-    public Object getData() {
+    public T getData() {
         return data;
     }
 
-    public void setData(Object data) {
+    public void setData(T data) {
         this.data = data;
     }
 

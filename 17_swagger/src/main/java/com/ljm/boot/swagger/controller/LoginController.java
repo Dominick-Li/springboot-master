@@ -1,9 +1,7 @@
 package com.ljm.boot.swagger.controller;
 
 
-import com.ljm.boot.swagger.model.HttpResult;
-import com.ljm.boot.swagger.model.PageParam;
-import com.ljm.boot.swagger.model.User;
+import com.ljm.boot.swagger.model.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -23,8 +21,9 @@ public class LoginController {
             @ApiImplicitParam(name = "username", value = "用户名"),
             @ApiImplicitParam(name = "password", value = "密码", required = true)
     })
-    public HttpResult getUserById(String username,String password) {
-        return HttpResult.successResult();
+    public HttpResult<User> getUserById(String username, String password)
+    {
+     return HttpResult.successResult(new User());
     }
 
 }
