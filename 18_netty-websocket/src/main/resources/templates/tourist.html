@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <title>在线咨询-游客页面</title>
+    <link rel="stylesheet" href="/css/wxchat/amazeui.min.css"/>
+    <link rel="stylesheet" href="/css/wxchat/main.css"/>
+    <link rel="Bookmark" href="/favicon.ico">
+    <link rel="Shortcut Icon" href="/favicon.ico"/>
+    <style type="text/css">
+        html {
+            height: 100%;
+        }
+
+        body {
+            height: 100%;
+        }
+
+        .windows_top {
+            display: flex;
+            background-color: #b2e2fa;
+            color: white;
+            height: 8%;
+        }
+
+        #boxBody {
+            height: 92%;
+            display: flex;
+        }
+
+        .talk_window {
+            width: 66%;
+            border-right: solid 1px #ccc;
+        }
+
+        .windows_body {
+            height: 80%;
+        }
+
+        .windows_input {
+            height: 20%
+        }
+
+        .logo {
+            border-radius: 2px;
+            margin-top: 1px;
+            margin-left: 20px;
+        }
+
+        .pt {
+            font-size: 16px;
+        }
+
+        .wechat {
+            background-color: #F5F5F5;
+            width: 100%;
+            height: 100%;
+        }
+
+        .windows_input {
+            border-top: solid 1px #ccc;
+        }
+
+        #rtitle {
+            margin-top: 40%;
+            text-align: center;
+            font-size: 30px;
+        }
+
+        #rbody {
+            text-align: center;
+            margin-top: 10%;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+
+        .other strong {
+            margin-left: 10px;
+        }
+
+        .me p {
+            text-align: right;
+        }
+
+        .other, .me {
+            padding-top: 0px;
+            margin-top: 0px;
+        }
+
+        .content {
+            padding: 0px
+        }
+        @media only screen and (max-width: 470px) {
+            .talk_window{width: 100%}
+            .rightBody{display: none;}
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <div class="wechat">
+        <!--聊天窗口-->
+        <input type="hidden" id="ws" th:value="${ws}">
+        <div class="windows_top">
+            <div>
+                <img src="/images/logo.png" width="30" class="logo">
+            </div>
+            <div>
+                <p class="pt">曲终人已散<span style="margin-left: 10px">正在为你服务</span></p>
+            </div>
+        </div>
+        <div id="boxBody">
+            <div class="talk_window">
+                <!------------------------------------------------------------聊天内容------------------------------------------------------------------------------------->
+                <div class="windows_body">
+                    <div class="office_text" style="height: 100%;" id="chatbox">
+                        <ul class="content windowBody_active">
+                            <li class="other">
+                                <p><img src="/images/head/6.jpg"/><strong>客服经理</strong>&nbsp;&nbsp;&nbsp;&nbsp;10:58</p>
+                                <div contenteditable="true" class="editDiv">您好,有什么需要帮忙的吗</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="windows_input" id="talkbox">
+                    <div class="input_icon">
+                        <a class="emotion btn" href="javascript:;"></a>
+                    </div>
+                    <div class="input_box">
+                        <div contenteditable="true" id="input_box"></div>
+                        <button id="send">发送（S）</button>
+                    </div>
+                </div>
+            </div>
+            <div style="width: 33%" class="rightBody">
+                <h1 id="rtitle">后会无期</h1>
+                <div id="rbody">
+                    等不制到 风中你的脸颊<br>
+                    眼泪都美到很融洽<br>
+                    等不到 掩饰的雨落下<br>
+                    我得眼泪被你觉察<br>
+                    等不到 你的雪月风花<br>
+                    我们的爱也有时差<br>
+                    等不到 不经意的牵挂<br>
+                    却没出息的放不下<br>
+                    你说陪我到某年某百月某天<br>
+                    却把我丢在某日某夜某街<br>
+                    错的并不是你 而是全世界<br>
+                    你带走我的思念<br>
+                    <strong style="color: red">却没说抱歉</strong><br>
+                    一起走过的黑夜<br>
+                    变一地白雪<br>
+                    我把记忆都翻遍<br>
+                    却没有问发现<br>
+                    我们约好的明天<br>
+                    你留给昨天
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+<script type="text/javascript" src="/js/amazeui.min.js"></script>
+<script type="text/javascript" src="/js/zUI.js"></script>
+<script type="text/javascript" src="/qqbq/jquery.qqFace.js"></script>
+<script type="text/javascript" src="/js/tourist.js"></script>
+</html>

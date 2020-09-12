@@ -28,6 +28,7 @@
         <module>15_shiro</module>
         <module>16_security-jwt</module>
         <module>17_swagger</module>
+        <module>18_netty-websocket</module>
     </modules>
 
 </project>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style type="text/css">
+    .flexBox {display: flex;width: 100%;}
+    .flexBox div {width: 50%;background-color: pink;}
+    #messageBox ul {border: solid 1px #ccc;width: 600px;height: 400px}
+</style>
+<body>
+
+<div class="flexBox">
+    <div style="text-align: right;" th:text="'当前登录的用户:'+${session.userId}"></div>
+</div>
+<!-- 聊天息 -->
+<div class="flexBox" id="messageBox">
+    <ul th:id="${groupId}" th:each="groupId,iterObj : ${groupList}">
+        <li th:text="房间号+${groupId}"></li>
+    </ul>
+    <ul id="chat">
+        <li>好友消息</li>
+    </ul>
+</div>
+<div style="width:100%;border: solid 1px #ccc;">
+    <form style="width: 40%;border: solid 1px red;margin: 0px auto">
+        <h3>给好友或者群聊发送数据</h3>
+        <div>
+            测试数据: (好友 1-4 ,房间号 1-2 )<br/>
+            请输出好友编号或房间号 <input type="number" id="chatId" value="1"><br/>
+            <textarea id="message" style="width: 100%">在不?</textarea>
+        </div>
+        <div>
+            消息类型<input name="messageType" type="radio" checked value="group">群聊<input name="messageType" type="radio" value="chat">私聊
+            <a href="#" id="send">发送</a>
+        </div>
+    </form>
+</div>
+</body>
+<!--在js脚本中获取作用域的值-->
+<script th:inline="javascript">
+    //获取session中的user
+    var userId = [[${session.userId}]];
+    //获取ws服务地址
+    var ws = [[${ws}]]
+</script>
+
+<script type="text/javascript">
+    var websocket;
+    if (!window.WebSocket) {
+        window.WebSocket = window.MozWebSocket;
+    }
+    if (window.WebSocket) {
+        websocket = new WebSocket(ws + "?userId=" + userId);
+        websocket.onmessage = function (event) {
+            var json = JSON.parse(event.data);
+            console.log(json)
+            chat.onmessage(json);
+        };
+        websocket.onopen = function (event) {
+            console.log("Netty-WebSocket服务器。。。。。。连接");
+        };
+        websocket.onclose = function (event) {
+            console.log("Netty-WebSocket服务器。。。。。。关闭");
+        };
+    } else {
+        alert("您的浏览器不支持WebSocket协议！");
+    }
+    //监听窗口关闭事件，当窗口关闭时，主动去关闭websocket连接，防止连接还没断开就关闭窗口，server端会抛异常。
+    window.onbeforeunload = function () {
+        if (websocket != null) {
+            websocket.close();
+        }
+    };
+</script>
+
+
+<script>
+    /**
+     * sendMessage    发送消息推送给websocket对象
+     * onmessage      接受来自服务端推送的消息,并显示在页面
+     * */
+    var chat = {
+        sendMessage: function () {
+            var message = document.getElementById("message").value; //发送的内容
+            if (message == "") {
+                alert('不能发送空消息');
+                return;
+            }
+            if (!window.WebSocket) {
+                return;
+            }
+            var chatId = document.getElementById("chatId").value; //好友Id或房间号id
+
+            var radio=document.getElementsByName("messageType");
+            var messageType=null;   //  聊天类型
+            for(var i=0;i<radio.length;i++){
+                if(radio[i].checked==true) {
+                    messageType=radio[i].value;
+                    break;
+                }
+            }
+            if (messageType == "chat") {
+                if (chatId == userId) {
+                    alert("不能给自己发私聊信息,请换个好友吧");
+                }
+                var li = document.createElement("li");
+                li.innerHTML = "My:" + message
+                var ul = document.getElementById("chat");
+                ul.appendChild(li);
+            }
+            if (websocket.readyState == WebSocket.OPEN) {
+                var data = {};
+                data.chatId = chatId;
+                data.message = message;
+                data.userId = userId;
+                data.messageType = messageType;
+                websocket.send(JSON.stringify(data));
+            } else {
+                alert("和服务器连接异常！");
+            }
+        },
+        onmessage: function (jsonData) {
+            var id;
+            if (jsonData.messageType == "chat") {
+                id = "chat";
+            } else {
+                id = jsonData.chatId;
+            }
+            console.log(id);
+            var li = document.createElement("li");
+            li.innerHTML = "用户id=" + jsonData.userId + ":" + jsonData.message;
+            var ul = document.getElementById(id);
+            ul.appendChild(li);
+        }
+    }
+
+    document.onkeydown = keyDownSearch;
+
+    function keyDownSearch(e) {
+        // 兼容FF和IE和Opera    
+        var theEvent = e || window.event;
+        var code = theEvent.keyCode || theEvent.which || theEvent.charCode;
+        // 13 代表 回车键
+        if (code == 13) {
+            // 要执行的函数 或者点击事件
+            chat.sendMessage();
+            return false;
+        }
+        return true;
+    }
+
+    document.getElementById("send").onclick = function () {
+        chat.sendMessage();
+    }
+</script>
+</html>

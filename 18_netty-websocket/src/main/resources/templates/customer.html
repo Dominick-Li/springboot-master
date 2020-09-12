@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <title>在线咨询-客服页面</title>
+    <link rel="stylesheet" href="/css/wxchat/amazeui.min.css"/>
+    <link rel="stylesheet" href="/css/wxchat/main.css"/>
+    <style type="text/css">
+        .content {display: none;position: absolute;top: 0px;}
+        .windowBody_active{display: inline;}
+        .back{display: none;}
+        .title{display: none;padding: 5px 0px 0PX 5PX;text-align: center;font-size: 14px;background-color: #E6E5E5;color: black;font-weight: bold;}
+        @media only screen and (max-width: 470px) {
+            html{height: 100%}
+            body{height: 100%;display: unset !important;}
+            .back{display: inline;}
+            .title{display: block}
+            .sidestrip{display: none}
+            .wechat{width: 100%;height: 100%}
+            .talk_window{width: 100%;display: none}
+            .middle{width: 100%}
+            .wx_search{padding: 12px}
+            .wx_search input{width: 96%;margin-left: 2%;background: white;border-radius: 5px;height: 30px;border:none;outline:none;-webkit-appearance:none;resize:none;box-sizing:border-box;}
+            .windows_top{height: 50px}
+            .windows_top_box{height: 50px;}
+            .windows_body{height: calc(80% - 50px);}
+            .windows_top_box > span{line-height: 30px;}
+            #window-firendName{font-size: 16px;font-weight: 600;margin-left: 15%;}
+            .other,.me{padding-top: 0px !important;margin-top: 0px !important;}
+            .other{padding-left: 10px !important;}
+            .me{padding-right: 10px !important;}
+            .content{padding: 10px;}
+        }
+    </style>
+</head>
+<body>
+<audio src="tishi.mp3" id="music" controls="controls" autoplay style="display: none"></audio>
+<div class="box">
+    <div class="wechat">
+        <div class="sidestrip">
+
+            <!--三图标-->
+            <div class="sidestrip_icon">
+                <a id="si_1" style="background: url(/images/icon/head_2_1.png) no-repeat;"></a>
+            </div>
+
+        </div>
+
+        <!------------------------------------------------------------聊天列表--------------------------------------------------------------->
+        <div class="middle on"  id="phonelist">
+            <div class="title">
+                <img src="/images/logo.png" width="34">
+                在线客服系统
+            </div>
+            <div class="wx_search">
+                <input class="windowSearch" type="text" placeholder="搜索"/>
+            </div>
+            <input type="hidden" id="userId" value="admin">
+            <input type="hidden" id="myHeadImg" value="/images/head/6.jpg">
+            <input type="hidden" id="ws" th:value="${ws}">
+            <div class="office_text">
+                <ul class="user_list" id="user_list">
+
+                </ul>
+            </div>
+        </div>
+
+
+        <!--聊天窗口-->
+        <div class="talk_window">
+            <div class="windows_top">
+                <div class="windows_top_box">
+                    <img src="/images/back.png" width="30" class="back">
+                    <span id="window-firendName">用户</span>
+                </div>
+            </div>
+
+
+            <!------------------------------------------------------------聊天内容------------------------------------------------------------------------------------->
+            <div class="windows_body">
+                <div class="office_text" style="height: 100%;" id="chatbox">
+                    <ul class="content windowBody_active">
+
+                    </ul>
+                </div>
+            </div>
+            <div class="windows_input" id="talkbox">
+                <div class="input_icon">
+                    <a class="emotion btn" href="javascript:;"></a>
+                    <a href="javascript:;"></a>
+                    <a href="javascript:;"></a>
+                    <a href="javascript:;"></a>
+                </div>
+                <div class="input_box">
+                    <div contenteditable="true" id="input_box"></div>
+                    <button id="send">发送（S）</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+<script type="text/javascript" src="/js/amazeui.min.js"></script>
+<script type="text/javascript" src="/js/zUI.js"></script>
+<script type="text/javascript" src="/js/customer.js"></script>
+<script type="text/javascript" src="/qqbq/jquery.qqFace.js"></script>
+
+<script type="text/javascript">
+    var websocket;
+    if (!window.WebSocket) {
+        window.WebSocket = window.MozWebSocket;
+    }
+    if (window.WebSocket) {
+        websocket = new WebSocket($("#ws").val() + "?userId=" + $("#userId").val());
+        websocket.onmessage = function (event) {
+            var json = JSON.parse(event.data);
+            chat.onmessage(json);
+        };
+        websocket.onopen = function (event) {
+            console.log("Netty-WebSocket服务器。。。。。。连接");
+        };
+        websocket.onclose = function (event) {
+            console.log("Netty-WebSocket服务器。。。。。。关闭");
+        };
+    } else {
+        alert("您的浏览器不支持WebSocket协议！");
+    }
+
+</script>
+</html>
