@@ -3,10 +3,10 @@
 基于springboot框架实现一些常用的功能
 
 # 环境
-![Java](https://img.shields.io/badge/JDK-1.8-green.svg)
-[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-2.3.0.RELEASE-brightgreen.svg)](https://spring.io/projects/spring-boot)
-
-
+环境 | 版本
+---- | ----
+JKD |1.8
+Spring Boot | 2.3.0.RELEASE
 
 
 项目 | 描述 | 博客地址
