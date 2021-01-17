@@ -29,6 +29,8 @@
         <module>16_security-jwt</module>
         <module>17_swagger</module>
         <module>18_netty-websocket</module>
+        <module>19_redis-session</module>
+        <module>20_config-switch</module>
     </modules>
 
 </project>
