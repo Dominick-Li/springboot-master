@@ -31,6 +31,7 @@
         <module>18_netty-websocket</module>
         <module>19_redis-session</module>
         <module>20_config-switch</module>
+        <module>21_webdemo</module>
     </modules>
 
 </project>
