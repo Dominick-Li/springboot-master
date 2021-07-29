@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
+    <output url="file://$MODULE_DIR$/../../09_dobbo_parent/common-api/target/classes" />
+    <output-test url="file://$MODULE_DIR$/../../09_dobbo_parent/common-api/target/test-classes" />
+    <content url="file://$MODULE_DIR$/../../09_dobbo_parent/common-api">
+      <sourceFolder url="file://$MODULE_DIR$/../../09_dobbo_parent/common-api/src/main/java" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/../../09_dobbo_parent/common-api/target" />
+      <excludeFolder url="file://$MODULE_DIR$/target" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

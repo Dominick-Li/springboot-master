@@ -11,26 +11,26 @@
     <description>基于springboot 2.3.0版本集成各种常用中间件的</description>
 
     <modules>
-        <module>1_helloword</module>
-        <module>2_thymeleaf</module>
-        <module>3_simplifycode</module>
-        <module>4_jta-atomikos</module>
-        <module>5_distributed-lock</module>
-        <module>6_docker-build</module>
-        <module>7_release-build</module>
-        <module>8_my-spring-boot-starter-parent</module>
-        <module>9_dobbo-parent</module>
-        <module>10_api-limit</module>
-        <module>11_spring-data-jpa</module>
-        <module>12_druid-monitor</module>
-        <module>13_spring-boot-admin</module>
-        <module>14_mybatis-plus</module>
+        <module>01_helloword</module>
+        <module>02_thymeleaf</module>
+        <module>03_simplifycode</module>
+        <module>04_jta-atomikos</module>
+        <module>05_distributed_lock</module>
+        <module>06_docker_build</module>
+        <module>07_release_build</module>
+        <module>08_my_spring_boot_starter_parent</module>
+        <module>09_dobbo_parent</module>
+        <module>10_api_limit</module>
+        <module>11_spring_data_jpa</module>
+        <module>12_druid_monitor</module>
+        <module>13_spring_boot_admin</module>
+        <module>14_mybatis_plus</module>
         <module>15_shiro</module>
-        <module>16_security-jwt</module>
+        <module>16_security_jwt</module>
         <module>17_swagger</module>
-        <module>18_netty-websocket</module>
-        <module>19_redis-session</module>
-        <module>20_config-switch</module>
+        <module>18_netty_websocket</module>
+        <module>19_redis_session</module>
+        <module>20_config_switch</module>
         <module>21_webdemo</module>
     </modules>
 
