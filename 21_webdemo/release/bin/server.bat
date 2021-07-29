@@ -19,12 +19,12 @@
 
 setlocal enabledelayedexpansion
 set errorlevel=
-title webdemo
+title webdemo server
 
 set SERVER_NAME=webdemo
-set SERVER_JAR=%SERVER_NAME%.jar
+set SERVER_JAR=lib/%SERVER_NAME%.jar
 set JAVA_OPT=-Dloader.path=lib
-set JAVA_OPT=%JAVA_OPT%  -Xms1g -Xmx1g -Xmn512m -XX:MetaspaceSize=128m -XX:MaxMetaspaceSize=320m
+set JAVA_OPT=%JAVA_OPT% -Xms1g -Xmx1g -Xmn512m -XX:MetaspaceSize=128m -XX:MaxMetaspaceSize=320m 
 set JAVA_OPT=%JAVA_OPT% -XX:-OmitStackTraceInFastThrow -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=logs/dump/%SERVER_NAME%_heapdump.hprof
 
 @REM Java JVM tuning settings for dev environment  print GC Log
@@ -34,7 +34,7 @@ set JAVA_OPT=%JAVA_OPT% -XX:-OmitStackTraceInFastThrow -XX:+HeapDumpOnOutOfMemor
 
 
 cd /d "%~dp0"
-
+cd ..
 
 @REM Check if Java is correctly installed and set
 java -version 1>nul 2>nul
@@ -53,7 +53,7 @@ if !errorlevel! neq 0 (
 @echo Please do not close the current window.
 @echo.
 @echo %JAVA_OPT%
-java %JAVA_OPT% -jar  %SERVER_JAR%
+java %JAVA_OPT% -jar  %SERVER_JAR% --spring.config.location=%CONF% 
 
 @echo Stopped ocr manager.
 @echo.

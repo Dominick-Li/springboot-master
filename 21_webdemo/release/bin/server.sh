@@ -1,10 +1,10 @@
 #:!/bin/bash
 
-BASE_DIR=$(cd $(dirname $0); pwd)
+BASE_DIR=$(cd $(dirname $0);cd ..; pwd)
 echo "Welcome enter $BASE_DIR"
 
 server_name=webdemo
-server_jar="${server_name}.jar"
+server_jar="lib/${server_name}.jar"
 console_out="logs/server-console-out.log"
 
 #Set heap memory and Metaspace memory
@@ -12,6 +12,8 @@ JAVA_OPT="-Dloader.path=lib"
 JAVA_OPT="${JAVA_OPT} -Xms1g -Xmx1g -Xmn512m -XX:MetaspaceSize=128m -XX:MaxMetaspaceSize=256m"
 JAVA_OPT="${JAVA_OPT} -XX:-OmitStackTraceInFastThrow -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=${BASE_DIR}/logs/heapdump/${server_name}_heapdump.hprof"
 #JAVA_OPT="${JAVA_OPT} -XX:+PrintGCDetails -Xloggc:logs/gc/${server_name}-gc.log"
+
+cd $BASE_DIR
 
 if [ ! -d "logs/gc" ] ;
 then

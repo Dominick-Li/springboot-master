@@ -63,7 +63,7 @@
                         </goals>
                         <configuration>
                             <tasks>
-                                <copy todir="release" overwrite="true">
+                                <copy todir="release/lib" overwrite="true">
                                     <fileset dir="${project.build.directory}" erroronmissingdir="false">
                                         <include name="*.jar"/>
                                     </fileset>
