@@ -32,3 +32,4 @@ Spring Boot | 2.3.0.RELEASE
 19_redis_session | 使用spring-session加redis来实现session共享 | [点我跳转](https://blog.csdn.net/ming19951224/article/details/112758560)
 20_config_switch | 自定义@Configuration配置类启用开关 | [点我跳转](https://blog.csdn.net/ming19951224/article/details/108555917)
 21_webdemo | 自定义@Configuration配置类启用开关 | [点我跳转](https://blog.csdn.net/ming19951224/article/details/119024251)
+22_rocketmq | 集成RocketMQ实现消息发布和订阅 |  [点我跳转](https://dominick-li.blog.csdn.net/article/details/119523197)

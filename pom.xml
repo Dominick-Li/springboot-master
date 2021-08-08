@@ -32,6 +32,7 @@
         <module>19_redis_session</module>
         <module>20_config_switch</module>
         <module>21_webdemo</module>
+        <module>22_rocketmq</module>
     </modules>
 
 </project>

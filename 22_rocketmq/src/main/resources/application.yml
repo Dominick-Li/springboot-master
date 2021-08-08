@@ -1,0 +1,44 @@
+rocketmq:
+  #namesrv地址
+  name-server: 127.0.0.1:9876
+  producer:
+    #消息生产者组名
+    group: test-group
+    #发送消息的超时时间
+    send-message-timeout: 3000
+    #异步消息重试的次数
+    retry-times-when-send-async-failed: 2
+    #重试是否换一个server
+    retry-next-server: true
+    #同步消息重试的次数
+    retry-times-when-send-failed: 2
+    #消费消息认证用的ak
+    access-key: Ak
+    #消费消息认证用的sk
+    secret-key: SK
+
+
+topic:
+  string: stringTopic
+  order: orderTopic
+
+spring:
+  application:
+    name: springboot-rocketMq
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=GMT%2b8&characterEncoding=utf8&connectTimeout=10000&socketTimeout=3000&autoReconnect=true
+    username: root
+    password: 123456
+  jpa:
+    database: mysql
+    show-sql: true
+    hibernate:
+      #自动创建或修改表结构
+      ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+
+
+
+
