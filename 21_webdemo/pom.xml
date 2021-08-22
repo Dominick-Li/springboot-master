@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.4.2</version>
+        <version>2.3.0.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.ljm</groupId>
@@ -30,24 +30,15 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
+                    <!--需要配置应用的启动类-->
+                    <mainClass>com.ljm.webdemo.WebdemoApplication</mainClass>
                     <layout>ZIP</layout>
-                    <!--去除在生产环境中不变的依赖-->
-                    <excludeGroupIds>
-                        org.springframework,
-                        org.springframework.boot,
-                        com.fasterxml.jackson.core,
-                        com.fasterxml.jackson.databind,
-                        org.slf4j,
-                        com.fasterxml.jackson.core,
-                        com.fasterxml.jackson.datatype,
-                        com.fasterxml.jackson.module,
-                        org.apache.logging.log4j,
-                        jakarta.annotation,
-                        javax.servlet,
-                        org.apache.tomcat.embed,
-                        ch.qos.logback,
-                        org.yaml,
-                    </excludeGroupIds>
+                    <includes>
+                        <include>
+                            <groupId>nothing</groupId>
+                            <artifactId>nothing</artifactId>
+                        </include>
+                    </includes>
                 </configuration>
             </plugin>
             <!--把包发布到根目录下的release目录下面-->
