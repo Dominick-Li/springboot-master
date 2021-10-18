@@ -1,0 +1,21 @@
+{
+  "outPath": "src\\main\\resources\\static",
+  "requestHeaders": [
+    {
+      "name": "token",
+      "type": "string",
+      "desc": "身份凭证",
+      "value":"",
+      "required": false,
+      "since": "-"
+    }],
+  "serverUrl": "http://localhost:8023",
+  "projectName": "测试项目RESTful文档",
+  "appKey": "20211018899655255950622720",
+  "secret": "Dgp1v$e>*9&g=Zws<q@XonXoeb0<jSlB",
+  "appToken": "3ca8e70b25774756a3bee6e800eb2791",
+  "openUrl": "http://127.0.0.1:7700/api",
+  "debugEnvName":"测试环境",
+  "debugEnvUrl":"http://127.0.0.1:8023",
+  "packageFilters": "com.ljm.boot.smartdoc.controller"
+}

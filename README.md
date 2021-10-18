@@ -33,3 +33,4 @@ Spring Boot | 2.3.0.RELEASE
 20_config_switch | 自定义@Configuration配置类启用开关 | [点我跳转](https://blog.csdn.net/ming19951224/article/details/108555917)
 21_webdemo | 自定义@Configuration配置类启用开关 | [点我跳转](https://blog.csdn.net/ming19951224/article/details/119024251)
 22_rocketmq | 集成RocketMQ实现消息发布和订阅 |  [点我跳转](https://dominick-li.blog.csdn.net/article/details/119523197)
+23_smartdoc | 集成smart-doc插件零侵入自动生成RESTful格式API文档 |  [点我跳转](https://dominick-li.blog.csdn.net/article/details/120824308)
