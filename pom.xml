@@ -34,6 +34,7 @@
         <module>21_webdemo</module>
         <module>22_rocketmq</module>
         <module>23_smartdoc</module>
+        <module>24_fastdfs</module>
     </modules>
 
 </project>

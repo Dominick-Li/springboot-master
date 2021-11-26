@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: fastdfs
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 10MB
+      max-request-size: 20MB
+fdfs:
+  # 连接超时
+  connect-timeout: 30000
+  # 读取时间
+  so-timeout: 30000
+  # 生成缩略图参数
+  thumb-image:
+    enabled: true
+    width: 250
+    height: 150
+  tracker-list: 192.168.94.128:22122
+
+server:
+  port: 8024
