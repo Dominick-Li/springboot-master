@@ -1,0 +1,15 @@
+server:
+  port: 8025
+minio:
+  #minio部署的机器ip地址
+  endpoint: 192.168.94.128
+  #minio使用的端口
+  port: 9000
+  #唯一标识的账户
+  accessKey: minioadmin
+  #账户的密码
+  secretKey: minioadmin
+  #是否使用https
+  secure: false
+  #测试使用的桶名称
+  defaultBucketName: test
