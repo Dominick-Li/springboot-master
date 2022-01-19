@@ -1,8 +1,14 @@
 package com.ljm.boot.springdatajpa;
 
 import com.ljm.boot.springdatajpa.model.*;
+import com.ljm.boot.springdatajpa.model.entityGraphs.TestMenu;
+import com.ljm.boot.springdatajpa.model.entityGraphs.TestRole;
+import com.ljm.boot.springdatajpa.model.entityGraphs.TestUser;
 import com.ljm.boot.springdatajpa.repository.*;
 import com.ljm.boot.springdatajpa.repository.custom.UserCustomImplRepsotory;
+import com.ljm.boot.springdatajpa.repository.entityGraphs.TestMenuRepository;
+import com.ljm.boot.springdatajpa.repository.entityGraphs.TestRoleRepository;
+import com.ljm.boot.springdatajpa.repository.entityGraphs.TestUserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,7 +25,6 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @SpringBootTest
@@ -43,16 +48,26 @@ class SpringDatajpaApplicationTests {
     @Autowired
     UserCustomImplRepsotory userCustomImplRepsotory;
 
+    @Autowired
+    TestUserRepository testUserRepository;
+
+    @Autowired
+    TestRoleRepository testRoleRepository;
+
+    @Autowired
+    TestMenuRepository testMenuRepository;
+
     @Test
     void contextLoads() {
         //selectUserByPageable();
-        saveAll();
+        //saveAll();
         //addUser();
         //addUserRole();;
         //findUserById(1);
         //findChannelById(1);
         //SpecificationQuery();
-       // nativeQuery();
+        // nativeQuery();
+        testEntityGraphs();
     }
 
     private void addUser() {
@@ -148,20 +163,66 @@ class SpringDatajpaApplicationTests {
             }
         };
         List<User> userList = userRepository.findAll(querySpecifi);
-        for(User user:userList){
+        for (User user : userList) {
             System.out.println(user.getUsername());
         }
     }
 
-    private  void nativeQuery(){
-        User user=new User();
+    /**
+     * 测试使用源生的sql查询
+     */
+    private void nativeQuery() {
+        User user = new User();
         user.setUsername("dominick_li");
         user.setChannelId(1);
-        List<Object[]>  list=userCustomImplRepsotory.findBynativeQuery(user);
-        for(Object[] objs:list){
-            System.out.println(objs[0]+","+objs[1]);
+        List<Object[]> list = userCustomImplRepsotory.findBynativeQuery(user);
+        for (Object[] objs : list) {
+            System.out.println(objs[0] + "," + objs[1]);
         }
     }
 
+    private void testEntityGraphs() {
+        //插入基础数据
+//        TestRole testRole = new TestRole();
+//        testRole.setId(1);
+//        testRole.setName("管理员");
+//        testRoleRepository.save(testRole);
+//        TestUser testUser = new TestUser();
+//        testUser.setId(1);
+//        testUser.setName("张三");
+//        testUser.setRoleId(testRole.getId());
+//        testUserRepository.save(testUser);
+//        TestMenu testMenu = new TestMenu();
+//        testMenu.setId(1);
+//        testMenu.setRoleId(1);
+//        testMenu.setName("后台管理");
+//        testMenuRepository.save(testMenu);
+//        TestMenu testMenu2 = new TestMenu();
+//        testMenu2.setId(2);
+//        testMenu2.setRoleId(1);
+//        testMenu2.setParentId(1);
+//        testMenu2.setName("用户管理");
+//        testMenuRepository.save(testMenu2);
+//        TestMenu testMenu3 = new TestMenu();
+//        testMenu3.setId(3);
+//        testMenu3.setParentId(1);
+//        testMenu3.setName("角色管理");
+//        testMenuRepository.save(testMenu3);
+//        TestMenu testMenu4 = new TestMenu();
+//        testMenu4.setId(4);
+//        testMenu4.setName("系统设置");
+//        testMenuRepository.save(testMenu4);
+//        TestMenu testMenu5 = new TestMenu();
+//        testMenu5.setId(5);
+//        testMenu5.setParentId(4);
+//        testMenu5.setName("字典配置");
+//        testMenuRepository.save(testMenu5);
+
+        TestUser testUser = testUserRepository.findByName("张三");
+        System.out.println(testUser.getTestRole().getTestMenuList().size());
+        for (TestMenu testMenu : testUser.getTestRole().getTestMenuList()) {
+            System.out.println(testMenu.getChildren().size());
+        }
+    }
 
 }
