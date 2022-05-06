@@ -34,4 +34,10 @@ public interface UserRepository extends JpaRepository<User,Integer>, JpaSpecific
     @Query(value = "select u.* from sys_user u where u.username = :username and u.password = :password",nativeQuery = true)
     User getByUsernameAndPasswordSQl(@Param("username")String username, @Param("password") String password);
 
+    @Query("select u from User u where 1=1 " +
+            " and(:username is null or u.username=:username)" +
+            " and(:mobile is null or u.mobile=:mobile)")
+    User findByUserNameOrMobile(@Param("username")String username, @Param("mobile") String mobile);
+
+
 }

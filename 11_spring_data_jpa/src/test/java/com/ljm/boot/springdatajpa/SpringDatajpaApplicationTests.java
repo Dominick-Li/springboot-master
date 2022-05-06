@@ -67,10 +67,18 @@ class SpringDatajpaApplicationTests {
         //findChannelById(1);
         //SpecificationQuery();
         // nativeQuery();
-        testEntityGraphs();
+        //testEntityGraphs();
+        findByUserNameOrMobile();
     }
 
+    /**
+     * 添加用户
+     */
     private void addUser() {
+        //插入一个机构
+        Channel channel=new Channel();
+        channel.setChannelName("研发部");
+        channelRepository.save(channel);
         User user = new User();
         user.setEmail("dominick_li@163.com");
         user.setUsername("dominick_li");
@@ -80,7 +88,9 @@ class SpringDatajpaApplicationTests {
         userRepository.save(user);
     }
 
-
+    /**
+     * 添加角色并管理用户
+     */
     private void addUserRole() {
         //初始化2个角色信息
         Role role = new Role();
@@ -126,6 +136,11 @@ class SpringDatajpaApplicationTests {
         ordersRepository.saveAll(ordersList);
     }
 
+    /**
+     * 根据用户Id查询用户
+     *
+     * @param id
+     */
     private void findUserById(Integer id) {
         User user = userRepository.getOne(id);
         System.out.println("渠道名称是:" + user.getChannel().getChannelName());
@@ -133,11 +148,19 @@ class SpringDatajpaApplicationTests {
         System.out.println("用户拥有:" + user.getRoles().size() + "个角色");
     }
 
+    /**
+     * 根据机构Id查询用户
+     *
+     * @param id
+     */
     private void findChannelById(Integer id) {
         Channel channel = channelRepository.getOne(id);
         System.out.println(channel.getChannelName() + "有" + channel.getUsers().size() + "个用户");
     }
 
+    /**
+     * 使用hql进行查询
+     */
     private void SpecificationQuery() {
         String startDate = "2020-05-22";
         String endDate = "2020-05-25";
@@ -181,6 +204,23 @@ class SpringDatajpaApplicationTests {
         }
     }
 
+    /**
+     * hql参数非空判断查询
+     * 条件都为Null的时候则查询所有,反之根据手机号和用户名两个条件查询
+     * 用户名为null手机号不为null则根据手机号查询,反之同理
+     */
+    public void findByUserNameOrMobile() {
+        String userName = "dominick_li";
+        //String userName = null;
+        //String mobile = "17600251493";
+        String mobile = null;
+        User user = userRepository.findByUserNameOrMobile(userName, mobile);
+        System.out.println(user==null);
+    }
+
+    /**
+     * 解决JPA懒加载N+1的问题
+     */
     private void testEntityGraphs() {
         //插入基础数据
 //        TestRole testRole = new TestRole();

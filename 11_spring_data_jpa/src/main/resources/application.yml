@@ -54,7 +54,7 @@ spring:
         jdbc:
           batch_size: 50
         #检测批处理开关是否打开
-        generate_statistics: true
+        generate_statistics: false
         #设置hibernate方言使用mysql的InnoDBD引擎,InnoDBD支持事务
         dialect: org.hibernate.dialect.MySQL5InnoDBDialect
         #启用懒加载

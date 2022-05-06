@@ -28,7 +28,6 @@
         <dependency>
             <groupId>de.codecentric</groupId>
             <artifactId>spring-boot-admin-starter-server</artifactId>
-            <version>2.2.2</version>
         </dependency>
 
         <!--发送邮件需要的依赖-->

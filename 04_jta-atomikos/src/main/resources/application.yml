@@ -13,4 +13,4 @@ spring:
       password: 123456
 
 server:
-  port: 8084
+  port: 8004
