@@ -1,14 +1,8 @@
 package com.ljm.boot.springdatajpa;
 
 import com.ljm.boot.springdatajpa.model.*;
-import com.ljm.boot.springdatajpa.model.entityGraphs.TestMenu;
-import com.ljm.boot.springdatajpa.model.entityGraphs.TestRole;
-import com.ljm.boot.springdatajpa.model.entityGraphs.TestUser;
 import com.ljm.boot.springdatajpa.repository.*;
 import com.ljm.boot.springdatajpa.repository.custom.UserCustomImplRepsotory;
-import com.ljm.boot.springdatajpa.repository.entityGraphs.TestMenuRepository;
-import com.ljm.boot.springdatajpa.repository.entityGraphs.TestRoleRepository;
-import com.ljm.boot.springdatajpa.repository.entityGraphs.TestUserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -49,13 +43,7 @@ class SpringDatajpaApplicationTests {
     UserCustomImplRepsotory userCustomImplRepsotory;
 
     @Autowired
-    TestUserRepository testUserRepository;
-
-    @Autowired
-    TestRoleRepository testRoleRepository;
-
-    @Autowired
-    TestMenuRepository testMenuRepository;
+    MenuRepository menuRepository;
 
     @Test
     void contextLoads() {
@@ -222,46 +210,37 @@ class SpringDatajpaApplicationTests {
      * 解决JPA懒加载N+1的问题
      */
     private void testEntityGraphs() {
-        //插入基础数据
-//        TestRole testRole = new TestRole();
-//        testRole.setId(1);
-//        testRole.setName("管理员");
-//        testRoleRepository.save(testRole);
-//        TestUser testUser = new TestUser();
-//        testUser.setId(1);
-//        testUser.setName("张三");
-//        testUser.setRoleId(testRole.getId());
-//        testUserRepository.save(testUser);
-//        TestMenu testMenu = new TestMenu();
-//        testMenu.setId(1);
-//        testMenu.setRoleId(1);
-//        testMenu.setName("后台管理");
-//        testMenuRepository.save(testMenu);
-//        TestMenu testMenu2 = new TestMenu();
-//        testMenu2.setId(2);
-//        testMenu2.setRoleId(1);
-//        testMenu2.setParentId(1);
-//        testMenu2.setName("用户管理");
-//        testMenuRepository.save(testMenu2);
-//        TestMenu testMenu3 = new TestMenu();
-//        testMenu3.setId(3);
-//        testMenu3.setParentId(1);
-//        testMenu3.setName("角色管理");
-//        testMenuRepository.save(testMenu3);
-//        TestMenu testMenu4 = new TestMenu();
-//        testMenu4.setId(4);
-//        testMenu4.setName("系统设置");
-//        testMenuRepository.save(testMenu4);
-//        TestMenu testMenu5 = new TestMenu();
-//        testMenu5.setId(5);
-//        testMenu5.setParentId(4);
-//        testMenu5.setName("字典配置");
-//        testMenuRepository.save(testMenu5);
+        //初始化插入基础数据
+        {
+//            Menu menu = new Menu();
+//            menu.setId(1);
+//            menu.setMenuName("系统管理");
+//            Menu menu2 = new Menu();
+//            menu2.setId(2);
+//            menu2.setMenuName("用户管理");
+//            menu2.setParentId(1);
+//            Menu menu3 = new Menu();
+//            menu3.setId(3);
+//            menu3.setMenuName("角色管理");
+//            menu3.setParentId(1);
+//            Menu menu4 = new Menu();
+//            menu4.setId(4);
+//            menu4.setMenuName("报表统计");
+//            Menu menu5 = new Menu();
+//            menu5.setId(5);
+//            menu5.setMenuName("按月统计");
+//            menu5.setParentId(4);
+//            menuRepository.save(menu);
+//            menuRepository.save(menu2);
+//            menuRepository.save(menu3);
+//            menuRepository.save(menu4);
+//            menuRepository.save(menu5);
+        }
 
-        TestUser testUser = testUserRepository.findByName("张三");
-        System.out.println(testUser.getTestRole().getTestMenuList().size());
-        for (TestMenu testMenu : testUser.getTestRole().getTestMenuList()) {
-            System.out.println(testMenu.getChildren().size());
+        List<Menu> menuList = menuRepository.findAllByParentIdIsNull();
+        System.out.println("一级菜单数量=" + menuList.size());
+        for (Menu menu : menuList) {
+            System.out.println("菜单名称=" + menu.getMenuName() + "的子菜单数量=" + menu.getChildList().size());
         }
     }
 
