@@ -36,6 +36,8 @@
         <module>23_smartdoc</module>
         <module>24_fastdfs</module>
         <module>25_minio</module>
+        <module>26_validation</module>
+        <module>27_email</module>
     </modules>
 
 </project>

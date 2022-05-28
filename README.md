@@ -36,3 +36,5 @@ Spring Boot | 2.3.0.RELEASE
 23_smartdoc | 集成smart-doc插件零侵入自动生成RESTful格式API文档 |  [点我跳转](https://dominick-li.blog.csdn.net/article/details/120824308)
 24_fastdfs | 集成FastDFS实现文件的分布式存储|  [点我跳转](https://dominick-li.blog.csdn.net/article/details/121529384)
 25_minio | 集成Minio实现文件的分布式对象存储 |  [点我跳转](https://dominick-li.blog.csdn.net/article/details/121739211)
+26_validation | 集成spring-boot-starter-validation对接口参数校验 |   [点我跳转](https://blog.csdn.net/ming19951224/article/details/124782483)
+27_email | 集成mail实现邮件推送带网页样式的消息 | [点我跳转](https://dominick-li.blog.csdn.net/article/details/125016994)
