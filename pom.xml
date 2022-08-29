@@ -38,6 +38,7 @@
         <module>25_minio</module>
         <module>26_validation</module>
         <module>27_email</module>
+        <module>28_jdbctemplate</module>
     </modules>
 
 </project>
