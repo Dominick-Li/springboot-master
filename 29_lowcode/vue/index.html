@@ -1,0 +1,84 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta http-equiv="X-UA-Compatible"content="IE=edge,IE=IE9" />
+        <meta http-equiv="X-UA-Compatible"content="IE=edge" />
+        <title>低代码开发平台</title>
+        <script type="text/javascript" src="/statics/jquery-3.2.1.js"></script>
+        <link rel="stylesheet" type="text/css" href="/statics/css/default.css">
+        <link rel="stylesheet" type="text/css" href="/statics/css/resetElementUi.css">
+        <!-- <link rel="Shortcut Icon" href="/statics/favicon.ico"/> -->
+        <script>
+            fnResize()
+            window.onresize = function () {
+              fnResize()
+            }
+            function fnResize() {
+              var deviceWidth = document.documentElement.clientWidth || window.innerWidth;
+              // document.documentElement.style.fontSize = (deviceWidth / 100) + 'px';
+              let widthsize
+              if(deviceWidth<768){
+                widthsize=12
+              }else if(deviceWidth>=768&&deviceWidth<992){
+                widthsize=13
+              }else if(deviceWidth>=992&&deviceWidth<1200){
+                widthsize=14
+              }else if(deviceWidth>=1200&&deviceWidth<1920){
+                widthsize=15
+              }else if(deviceWidth>=1920){
+                widthsize=16
+              }
+              document.documentElement.style.fontSize = widthsize + 'px';
+            }
+        </script>
+    </head>
+    <body>
+        <div id="app" style="width: 100%;height: 100%"></div>
+        <!-- built files will be auto injected -->
+        <script>
+            if (!window.scrollTo) {
+              window.scrollTo = function(left,top) {
+                window.scrollLeft = left;
+                window.scrollTop = top;
+              };
+            }
+
+            if (!document.body.scrollTo) {
+              Element.prototype.scrollTo = function(left,top) {
+                this.scrollLeft = left;
+                this.scrollTop = top;
+              };
+            }
+
+            // if (!window.scrollTo) {
+            //   window.scrollTo = function (x, y) {
+            //     window.pageXOffset = x;
+            //     window.pageYOffset = y;
+            //   };
+            // }
+            if (!window.scrollBy) {
+              window.scrollBy = function (x, y) {
+                window.pageXOffset += x;
+                window.pageYOffset += y;
+              };
+            }
+            // if (!document.body.scrollTo) {
+            //   Element.prototype.scrollTo = function (x, y) {
+            //     this.scrollLeft = x;
+            //     this.scrollTop = y;
+            //   };
+            // }
+            if (!document.body.scrollBy) {
+              Element.prototype.scrollBy = function (x, y) {
+                this.scrollLeft += x;
+                this.scrollTop += y;
+              };
+            }
+        </script>
+    </body>
+</html>
+

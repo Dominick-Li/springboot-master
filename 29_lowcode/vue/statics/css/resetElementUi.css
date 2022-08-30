@@ -1,0 +1,16 @@
+
+.el-dialog__header {
+	padding: 0px 20px !important;
+	height: 48px;
+	line-height: 48px;
+	font-size: 16px;
+	font-weight: 900;
+	border-bottom: 1px solid #dbdcdc;
+}
+
+.el-dialog__body {
+	padding: 0px !important;
+	color: #606266;
+	font-size: 14px;
+	word-break: break-all;
+}
