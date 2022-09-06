@@ -1,0 +1,66 @@
+server:
+  port: 8030
+
+database:
+  #数据库连接地址
+  ip: 127.0.0.1
+  #数据库端口
+  port: 3306
+  username: root
+  password: 123456
+  #连接信息前缀
+  url-prefix: jdbc:mysql://${database.ip}:${database.port}
+  url-suffix: createDatabaseIfNotExist=true&useSSL=false&serverTimezone=GMT%2b8&characterEncoding=utf8&connectTimeout=1000&socketTimeout=15000&autoReconnect=true
+  #配置数据库名称集合
+  datasource:
+    db0: test
+
+spring:
+  jpa:
+    hibernate:
+      # 自动建表 最好改成 none
+      ddl-auto: update
+    show-sql: true
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+  shardingsphere:
+    datasource:
+      # 数据源名称集合
+      names: ${database.datasource.db0}
+      test:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbcUrl: ${database.url-prefix}/${database.datasource.db0}?${database.url-suffix}
+        username: ${database.username}
+        password: ${database.password}
+        pool-name: MyHikariCP
+        minimum-idle: 10
+        maximum-pool-size: 30
+        idle-timeout: 600000
+        max-lifetime: 1800000
+        connection-timeout: 30000
+        connection-test-query: SELECT 1
+    sharding:
+      # 默认分库 未配置分片规则的表将通过默认数据源定位
+      default-data-source-name: ${database.datasource.db0}
+      # 分表
+      tables:
+        #表名
+        user:
+          #数据库名称.表名称$->{数量范围}
+          actual-data-nodes: test.user$->{1..2}
+          # 配置表分片策略
+          table-strategy:
+            # 行表达式
+            inline:
+              # 配置表分片的字段
+              sharding-column: id
+              # 配置表分片算法
+              algorithm-expression: user$->{id % 2 +1}
+          key-generator:
+            column: id
+            # 雪花算法生成id
+            type: SNOWFLAKE
+    #打印sharding的日志
+    props:
+      sql:
+        show: true

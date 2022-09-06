@@ -1,0 +1,55 @@
+server:
+  port: 8030
+
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+  shardingsphere:
+    datasource:
+      # 数据源名称集合
+      names: master,slave1
+      #主库
+      master:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbcUrl: jdbc:mysql://192.168.239.128:3306/test?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=GMT%2b8&characterEncoding=utf8&connectTimeout=1000&socketTimeout=15000&autoR
+        username: root
+        password: 123456
+        pool-name: MyHikariCP_1
+        minimum-idle: 10
+        maximum-pool-size: 30
+        idle-timeout: 600000
+        max-lifetime: 1800000
+        connection-timeout: 30000
+        connection-test-query: SELECT 1
+      #从库
+      slave1:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbcUrl: jdbc:mysql://192.168.239.128:3307/test?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=GMT%2b8&characterEncoding=utf8&connectTimeout=1000&socketTimeout=15000&autoR
+        username: root
+        password: 123456
+        pool-name: MyHikariCP_2
+        minimum-idle: 10
+        maximum-pool-size: 30
+        idle-timeout: 600000
+        max-lifetime: 1800000
+        connection-timeout: 30000
+        connection-test-query: SELECT 1
+    sharding:
+      master-slave-rules:
+        master-slave-group:
+          # 指定主节点名字        写操作
+          master-datasource-name: master
+          # 指定从节点名字,多个读节点用逗号分开  读操作
+          slave-data-source-names: slave1
+    masterslave:
+      # 配置从库选择策略，提供轮询与随机，这里选择用轮询
+      load-balance-algorithm-type: round_robin
+    #打印sharding的日志
+    props:
+      sql:
+        show: true
