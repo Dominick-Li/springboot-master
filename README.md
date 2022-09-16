@@ -40,4 +40,5 @@ Spring Boot | 2.3.0.RELEASE
 27_email | 集成mail实现邮件推送带网页样式的消息 | [点我跳转](https://dominick-li.blog.csdn.net/article/details/125016994)
 28_jdbctemplate | 使用JdbcTemplate操作数据库 | [点我跳转](https://dominick-li.blog.csdn.net/article/details/126592129)
 29_lowcode | Jpa+vue实现单模型的低代码平台 | [点我跳转](https://dominick-li.blog.csdn.net/article/details/126466950)
-30_sharding_jdbc | 使用sharding-jdbc实现读写分离和分库分表 | [点我跳转](https://dominick-li.blog.csdn.net/article/details/126736786)
+30_sharding_jdbc | 使用sharding-jdbc实现读写分离和分库分表 | [点我跳转](https://dominick-li.blog.csdn.net/article/details/126736786) 
+31_distributed_job | 基于分布式锁或xxx-job实现分布式任务调度 | [点我跳转](https://dominick-li.blog.csdn.net/article/details/1268883456) 

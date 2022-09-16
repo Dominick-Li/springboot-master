@@ -41,6 +41,7 @@
         <module>28_jdbctemplate</module>
         <module>29_lowcode</module>
         <module>30_sharding_jdbc</module>
+        <module>31_distributed_job</module>
     </modules>
 
 </project>
