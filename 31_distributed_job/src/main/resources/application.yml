@@ -1,0 +1,44 @@
+server:
+  port: 8032
+spring:
+  profiles:
+    #redis=分布式锁实现, xxlJob=使用分布式任务调度平台实现
+    active: redis
+
+#-------------  redis配置    ---------------
+---
+spring:
+  config:
+    activate:
+      on-profile: redis
+  redis:
+    #redis服务器的ip
+    host: 127.0.0.1
+    port: 6379
+    jedis:
+      pool:
+        max-active: 8
+
+#-------------  xxl-job配置    ---------------
+---
+spring:
+  config:
+    activate:
+      on-profile: xxlJob
+xxlJob:
+  #xxl-job服务端配置文件中定义好的token
+  accessToken: default_token
+  #xxl-job服务端地址(用于注册执行器使用)
+  adminAddresses: http://127.0.0.1:8080/xxl-job-admin
+  executor:
+    # 执行器AppName [选填]：执行器心跳注册分组依据；为空则关闭自动注册
+    appname: testJob
+    # 执行器IP [选填]：默认为空表示自动获取IP，多网卡时可手动设置指定IP
+    ip:
+    # 执行器端口号 [选填]：小于等于0则自动获取；默认端口为9999
+    port: 0
+    # 执行器运行日志文件存储磁盘路径 [选填]
+    logpath: logs/xxlJob
+    # 执行器日志文件保存天数 [选填] ： 过期日志自动清理, 限制值大于等于3时生效; -1关闭自动清理功能；
+    logretentiondays: 5
+
