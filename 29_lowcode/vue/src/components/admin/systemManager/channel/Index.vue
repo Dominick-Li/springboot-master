@@ -59,6 +59,9 @@
                 </el-form-item>
               </el-form>
               <div class="btns">
+                <el-button type="primary" size="mini" @click="rightAdd(0)"
+                  >添加</el-button
+                >
                 <el-button type="primary" size="mini" @click="rightAdd(1)"
                   >添加子机构</el-button
                 >

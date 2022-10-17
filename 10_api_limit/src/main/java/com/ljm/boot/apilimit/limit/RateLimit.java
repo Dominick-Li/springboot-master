@@ -12,4 +12,7 @@ import java.lang.annotation.*;
 @Documented
 public @interface RateLimit {
 
+    String limitKey() default ""; //限流的方法名
+
+    double value()  default 0d;  //发放的许可证数量
 }

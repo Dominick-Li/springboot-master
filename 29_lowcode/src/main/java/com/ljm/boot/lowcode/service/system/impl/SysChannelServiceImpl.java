@@ -56,7 +56,7 @@ public class SysChannelServiceImpl implements SysChannelService {
 
     @Override
     public JsonResult findAll() {
-        java.util.List<SysChannel> sysChannelList = sysChannelRepository.findAllByParentIdIsNullOrderByOrderStr();
+        java.util.List<SysChannel> sysChannelList = sysChannelRepository.findAllByParentIdOrderByOrderStr(0);
         return JsonResult.successResult(sysChannelList);
     }
 

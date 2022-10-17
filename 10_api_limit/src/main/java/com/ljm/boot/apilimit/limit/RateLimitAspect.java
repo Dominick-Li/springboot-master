@@ -2,35 +2,50 @@ package com.ljm.boot.apilimit.limit;
 
 import com.google.common.util.concurrent.RateLimiter;
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import java.lang.reflect.Method;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
 /**
  * @author Dominick Li
  * @CreateTime 2020/5/2 11:57
- * @description  基于guava包下的RateLimimiter限流  实现每秒令牌数量控制
+ * @description 基于guava包下的RateLimimiter限流  实现每秒令牌数量控制
  **/
 @Component
 @Scope
 @Aspect
 public class RateLimitAspect {
-    //每秒只发出3个令牌,内部采用令牌捅算法实现
-    private static RateLimiter rateLimiter = RateLimiter.create(3.0);
+
+    /**
+     * 存储限流量和方法必须是static且线程安全
+     */
+    public static Map<String, RateLimiter> rateLimitMap = new ConcurrentHashMap<>();
 
     /**
      * 业务层切点
      */
     @Pointcut("@annotation(com.ljm.boot.apilimit.limit.RateLimit)")
-    public void ServiceAspect() { }
+    public void ServiceAspect() {
+    }
 
     @Around("ServiceAspect()")
     public Object around(ProceedingJoinPoint joinPoint) {
         Object obj = null;
         try {
+            //获取目标对象
+            Class<?> clz = joinPoint.getTarget().getClass();
             //tryAcquire()是非阻塞, rateLimiter.acquire()是阻塞的
+            Signature signature = joinPoint.getSignature();
+            String name = signature.getName();
+            String limitKey = getLimitKey(clz, name);
+            RateLimiter rateLimiter = rateLimitMap.get(limitKey);
             if (rateLimiter.tryAcquire()) {
                 obj = joinPoint.proceed();
             } else {
@@ -41,5 +56,22 @@ public class RateLimitAspect {
             e.printStackTrace();
         }
         return obj;
+    }
+
+    private String getLimitKey(Class<?> clz, String methodName) {
+        for (Method method : clz.getDeclaredMethods()) {
+            //找出目标方法
+            if (method.getName().equals(methodName)) {
+                //判断是否是限流方法
+                if (method.isAnnotationPresent(RateLimit.class)) {
+                    String key= method.getAnnotation(RateLimit.class).limitKey();
+                    if(key.equals("")){
+                        key=method.getName();
+                    }
+                    return key;
+                }
+            }
+        }
+        return null;
     }
 }

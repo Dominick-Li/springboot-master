@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface SysChannelRepository extends JpaRepository<SysChannel, Integer>, JpaSpecificationExecutor {
 
-    List<SysChannel> findAllByParentIdIsNullOrderByOrderStr();
+    List<SysChannel> findAllByParentIdOrderByOrderStr(Integer parentId);
 
     SysChannel findTopByChannelCode(String channelCode);
 

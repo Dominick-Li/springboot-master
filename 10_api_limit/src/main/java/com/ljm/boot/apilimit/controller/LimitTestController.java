@@ -15,7 +15,10 @@ import java.util.concurrent.TimeUnit;
 @RestController
 public class LimitTestController {
 
-    @RateLimit
+    /**
+     * 设置limitKey=ratelimitKey,并且每秒许可证只有3个
+     */
+    @RateLimit(value =3)
     @RequestMapping("/ratelimit")
     public String ratelimit() throws Exception{
         //假设业务处理了1秒
@@ -24,7 +27,7 @@ public class LimitTestController {
     }
 
     /**
-     * 设置limitKey=SemaphoreKey,并且许可证只有3个
+     * 设置limitKey=SemaphoreKey,并且最多允许3个线程同时执行
      */
     @SemaphoreLimit(limitKey ="SemaphoreKey", value =3)
     @RequestMapping("/SemaphoreLimit")

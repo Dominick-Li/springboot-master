@@ -24,7 +24,7 @@ import java.util.concurrent.Semaphore;
 public class SemaphoreLimitAspect {
 
     /**
-     * 存储限流量和方法,必须是static且线程安全,保证所有线程进入都唯一
+     * 存储限流量和方法必须是static且线程安全
      */
     public static Map<String, Semaphore> semaphoreMap = new ConcurrentHashMap<>();
 
@@ -59,7 +59,8 @@ public class SemaphoreLimitAspect {
         } catch (Throwable e) {
             e.printStackTrace();
         } finally {
-            if (flag) semaphore.release(); //拿到许可证后释放通行证
+            //拿到许可证后释放通行证
+            if (flag) semaphore.release();
         }
         return obj;
     }
@@ -73,7 +74,11 @@ public class SemaphoreLimitAspect {
             if (method.getName().equals(methodName)) {
                 //判断是否是限流方法
                 if (method.isAnnotationPresent(SemaphoreLimit.class)) {
-                    return method.getAnnotation(SemaphoreLimit.class).limitKey();
+                    String key= method.getAnnotation(SemaphoreLimit.class).limitKey();
+                    if(key.equals("")){
+                        key=method.getName();
+                    }
+                    return key;
                 }
             }
         }
