@@ -20,7 +20,9 @@ public class RateLimitWebTest {
         for (int i = 0; i < threadSize; i++) {
             fixedThreadPool.submit(() -> {
                 RestTemplate restTemplate = new RestTemplate();
-                String str = restTemplate.getForObject("http://localhost:8010/ratelimit", String.class);
+                //String str = restTemplate.getForObject("http://localhost:8010/ratelimit", String.class);
+                //String str= restTemplate.getForObject("http://localhost:8010/SemaphoreLimit",String.class);
+                String str = restTemplate.getForObject("http://localhost:8010/redisRatelimit", String.class);
                 if ("success".equals(str)) {
                     successCount.incrementAndGet();
                 }

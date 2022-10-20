@@ -1,6 +1,18 @@
-spring:
-  application: guava
-#api接口限流大小
-rateLimiterSize: 3.0
 server:
   port: 8010
+
+spring:
+  application: guava
+  redis:
+    #redis服务器的ip
+    host: 127.0.0.1
+    port: 6379
+    jedis:
+      pool:
+        max-active: 8
+
+#api接口限流大小
+rateLimiterSize: 3.0
+
+
+

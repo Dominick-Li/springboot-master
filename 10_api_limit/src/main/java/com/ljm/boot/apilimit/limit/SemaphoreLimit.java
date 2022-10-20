@@ -14,6 +14,6 @@ public @interface SemaphoreLimit {
 
     String limitKey() default ""; //限流的方法名
 
-    int value()  default 0;  //发放的许可证数量
+    int value()  default 3;  //发放的许可证数量
 
 }
