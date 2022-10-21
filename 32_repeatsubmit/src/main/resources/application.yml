@@ -1,0 +1,11 @@
+server:
+  port: 8032
+
+spring:
+  redis:
+    #redis·þÎñÆ÷µÄip
+    host: 127.0.0.1
+    port: 6379
+    jedis:
+      pool:
+        max-active: 8
