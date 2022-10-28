@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:flowable="http://flowable.org/bpmn"
+             typeLanguage="http://www.w3.org/2001/XMLSchema"
+             expressionLanguage="http://www.w3.org/1999/XPath"
+             targetNamespace="http://www.flowable.org/processdef">
+
+    <process id="holidayRequest" name="请假流程" isExecutable="true">
+        <!--开始事件-->
+        <startEvent id="startEvent"/>
+        <!--顺序流，从 startEvent 到 approveTask-->
+        <sequenceFlow sourceRef="startEvent" targetRef="approveTask"/>
+        <!--用户任务，需要 assignee 来审批-->
+        <userTask id="approveTask" name="同意或驳回请求" flowable:candidateGroups="managers" flowable:assignee="admin"/>
+        <!--顺序流，从 approveTask 到 decision -->
+        <sequenceFlow sourceRef="approveTask" targetRef="decision"/>
+        <!--排他网关-->
+        <exclusiveGateway id="decision"/>
+        <!--顺序流，从 decision 到 successCall-->
+        <sequenceFlow sourceRef="decision" targetRef="successCall">
+            <conditionExpression xsi:type="tFormalExpression">
+                <!--approved 为 true 时，该顺序流生效-->
+                <![CDATA[
+          ${approved}
+        ]]>
+            </conditionExpression>
+        </sequenceFlow>
+        <!--顺序流，从 decision 到 failedCall-->
+        <sequenceFlow sourceRef="decision" targetRef="failedCall">
+            <conditionExpression xsi:type="tFormalExpression">
+                <!--approved 为 false 时，该顺序流生效-->
+                <![CDATA[
+          ${!approved}
+        ]]>
+            </conditionExpression>
+        </sequenceFlow>
+        <!--服务任务，审批通过 -->
+        <serviceTask id="successCall" name="审批通过调用服务"
+                     flowable:class="com.ljm.boot.flowable.approval.ApprovalSuccessDelegate"/>
+        <sequenceFlow sourceRef="successCall" targetRef="holidayApprovedTask"/>
+        <userTask id="holidayApprovedTask" name="审批通过"/>
+        <sequenceFlow sourceRef="holidayApprovedTask" targetRef="approveEnd"/>
+        <!--服务任务，审批驳回 -->
+        <serviceTask id="failedCall" name="审批驳回调用服务"
+                     flowable:class="com.ljm.boot.flowable.approval.ApprovalRejectDelegate"/>
+        <sequenceFlow sourceRef="failedCall" targetRef="rejectEnd"/>
+        <!--结束事件-->
+        <endEvent id="approveEnd"/>
+        <endEvent id="rejectEnd"/>
+    </process>
+</definitions>
