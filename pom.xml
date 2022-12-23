@@ -42,6 +42,7 @@
         <module>29_lowcode</module>
         <module>30_sharding_jdbc</module>
         <module>31_distributed_job</module>
+        <module>32_repeatsubmit</module>
     </modules>
 
 </project>

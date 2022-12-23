@@ -1,5 +1,6 @@
 package com.ljm.boot.jwttoken.controller;
 
+import com.ljm.boot.jwttoken.annotation.IgnoreWebSecurity;
 import com.ljm.boot.jwttoken.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -24,11 +25,12 @@ public class TokenController {
     /**
      * 登录接口
      */
+    @IgnoreWebSecurity
     @PostMapping("/sso/login")
     public Map login(@RequestParam("username") String username,
                      @RequestParam("password") String password) {
         // 省略数据源校验
-        return userService.login(username,password);
+        return userService.login(username, password);
     }
 
     /**

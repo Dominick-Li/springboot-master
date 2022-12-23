@@ -18,7 +18,7 @@ public @interface RepeatSubmit {
     TimeUnit timeUnit() default TimeUnit.SECONDS;
 
     /**
-     * 间隔时间
+     * 间隔时间,默认为3秒
      */
     int interval() default 3;
 

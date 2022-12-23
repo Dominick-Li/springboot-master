@@ -13,3 +13,13 @@ jwt:
   #请求头参数
   tokenHead: token
 
+#不需要认证的接口地址
+security:
+  ignore:
+   get:
+     - /test/image/**
+   post:
+
+   all:
+
+

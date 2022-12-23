@@ -7,7 +7,9 @@ import com.ljm.boot.redisson.util.RedisUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.*;
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
 import org.springframework.validation.BindingResult;
@@ -23,7 +25,7 @@ import java.util.Collection;
 import java.util.Map;
 
 /**
- *防止重复提交
+ * 防止重复提交AOP切面实现类
  */
 @Slf4j
 @Aspect
@@ -39,11 +41,12 @@ public class RepeatSubmitAspect {
         Method method = currentMethod(proceedingJoinPoint);
         //获取到方法的注解对象
         RepeatSubmit repeatSubmit = method.getAnnotation(RepeatSubmit.class);
-        // 如果注解值大于0责是要注解的值
+
         long interval = 1000;
         if (repeatSubmit.interval() > 0) {
             interval = repeatSubmit.timeUnit().toMillis(repeatSubmit.interval());
         }
+
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
         String params = argsToString(proceedingJoinPoint.getArgs());
@@ -59,11 +62,13 @@ public class RepeatSubmitAspect {
         boolean flag = false;
 
         //判断缓存中是否有此key
-        if (!RedisUtils.hasKey(submitKey)) {
-            log.info("key={},interval={},非重复提交",submitKey,interval);
-            //如果没有表示不是重复提交并设置key时间
+        if (RedisUtils.hasKey(submitKey)) {
+            log.info("key={},interval={},重复提交", submitKey, interval);
+        } else {
+            //如果没有表示不是重复提交并设置key存活的缓存时间
             RedisUtils.setCacheObject(submitKey, "", Duration.ofMillis(interval));
             flag = true;
+            System.out.println("非重复提交");
         }
 
         if (flag) {
@@ -73,13 +78,14 @@ public class RepeatSubmitAspect {
             } catch (Throwable e) {
                 /*异常通知方法*/
                 log.error("异常通知方法>目标方法名{},异常为：{}", method.getName(), e);
+            } finally {
+                RedisUtils.deleteObject(submitKey);
             }
             return result;
         } else {
             return "{'code':500,'msg':'重复提交'}";
         }
     }
-
 
     /**
      * 根据切入点获取执行的方法
@@ -116,9 +122,6 @@ public class RepeatSubmitAspect {
         }
         return params.toString().trim();
     }
-
-
-
 
     /**
      * 判断是否是需要过滤的对象

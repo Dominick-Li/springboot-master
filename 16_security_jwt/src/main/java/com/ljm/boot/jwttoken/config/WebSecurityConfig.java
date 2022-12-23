@@ -12,11 +12,14 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.annotation.web.configurers.ExpressionUrlAuthorizationConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import javax.annotation.Resource;
 
 /**
  * @author Dominick Li
@@ -35,8 +38,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private MyAuthExcetion.MyAccessDenied myAccessDenied;
 
-    @Autowired
+    @Resource
     private UserDetailsService userDetailsService;
+
+    @Resource
+    private IgnoreSecurityPropetties ignoreSecurityPropetties;
 
     @Bean
     @Override
@@ -74,6 +80,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
+
+        String[] all = new String[ignoreSecurityPropetties.getAll().size()];
+        String[] get = new String[ignoreSecurityPropetties.getGet().size()];
+        String[] post = new String[ignoreSecurityPropetties.getPost().size()];
+        ignoreSecurityPropetties.getGet().toArray(get);
+        ignoreSecurityPropetties.getPost().toArray(post);
+        ignoreSecurityPropetties.getAll().toArray(all);
+
+        ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry authorizeRequest = httpSecurity.authorizeRequests();
         httpSecurity
                 // we don't need CSRF because our token is invulnerable
                 .csrf().disable()
@@ -82,12 +97,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling().accessDeniedHandler(myAccessDenied).and()
                 // don't create session
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-                .authorizeRequests()
-                //过滤掉不需要权限的地址
-                .antMatchers(HttpMethod.GET, "/").permitAll()
-                .antMatchers("/sso/login").permitAll()
-                // 其它接口都要认证
-                .anyRequest().authenticated();
+                .authorizeRequests();
+
+
+        if (all.length > 0) {
+            authorizeRequest.antMatchers(all).permitAll();
+        }
+        if (get.length > 0) {
+            authorizeRequest.antMatchers(HttpMethod.GET, get).permitAll();
+        }
+        if (post.length > 0) {
+            authorizeRequest.antMatchers(HttpMethod.POST, post).permitAll();
+        }
+        // 其它接口都要认证
+        authorizeRequest.anyRequest().authenticated();
 
         //将token验证添加在密码验证前面
         httpSecurity.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);

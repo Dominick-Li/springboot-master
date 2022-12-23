@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 /**
  * @author Dominick Li
  * @createTime 2020/3/5 23:33
- * @description 普通类调用Spring bean对象： 说明： 1、此类需要放到项目同包或者子包下才能被扫描，否则失效。
+ * @description 普通类调用Spring bean对象使用的工具类
  **/
 @Component
 public class SpringUtil implements ApplicationContextAware {
@@ -20,9 +20,7 @@ public class SpringUtil implements ApplicationContextAware {
         if (SpringUtil.applicationContext == null) {
             SpringUtil.applicationContext = applicationContext;
         }
-
     }
-
 
     /**
      * 获取applicationContext
