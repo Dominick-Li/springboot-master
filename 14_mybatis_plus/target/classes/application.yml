@@ -1,5 +1,6 @@
 server:
   port: 8014
+
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -11,6 +12,7 @@ spring:
     sql-script-encoding: utf-8
     platform: mysql
     initialization-mode: always
+
   freemarker:
     #关闭模板缓存，方便测试
     cache: false
