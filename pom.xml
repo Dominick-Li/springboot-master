@@ -43,6 +43,7 @@
         <module>30_sharding_jdbc</module>
         <module>31_distributed_job</module>
         <module>32_repeatsubmit</module>
+        <module>33_i18n</module>
     </modules>
 
 </project>

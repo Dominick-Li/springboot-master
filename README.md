@@ -43,3 +43,4 @@ Spring Boot | 2.3.0.RELEASE
 30_sharding_jdbc | 使用sharding-jdbc实现读写分离和分库分表 | [点我跳转](https://dominick-li.blog.csdn.net/article/details/126736786) 
 31_distributed_job | 基于分布式锁或xxx-job实现分布式任务调度 | [点我跳转](https://dominick-li.blog.csdn.net/article/details/1268883456) 
 32_repeatsubmit| 基于注解+redis实现表单防重复提交 | [点我跳转](https://dominick-li.blog.csdn.net/article/details/128410984) 
+33_i18n | 优雅集成i18n实现国际化信息返回 | [点我跳转](https://dominick-li.blog.csdn.net/article/details/132183237) 
