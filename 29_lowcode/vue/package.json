@@ -76,7 +76,7 @@
     "less": "^3.10.3",
     "less-loader": "^5.0.0",
     "mark.js": "^8.11.1",
-    "nightwatch": "^0.9.12",
+    "nightwatch": "^0.9.21",
     "node-notifier": "^5.1.2",
     "node-sass": "^4.14.1",
     "npm": "^6.14.4",
