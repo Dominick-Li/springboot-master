@@ -20,7 +20,7 @@
     "echarts": "^4.8.0",
     "element-resize-detector": "^1.2.1",
     "es6-promise": "^4.2.8",
-    "jspdf": "^1.5.3",
+    "jspdf": "^2.5.1",
     "kscreenshot": "^1.2.3",
     "mammoth": "^1.4.15",
     "px2rem-loader": "^0.1.9",
